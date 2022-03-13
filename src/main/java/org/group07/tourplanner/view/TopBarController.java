@@ -1,22 +1,25 @@
-package org.group07.tourplanner;
+package org.group07.tourplanner.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
+import org.group07.tourplanner.viewmodel.MainWindowViewModel;
+import org.group07.tourplanner.viewmodel.TopBarViewModel;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class TopBarController implements Initializable {
 
-    private final MainViewModel viewModel = new MainViewModel();
+    private final TopBarViewModel topBarViewModel;
 
     public TextField searchTextField;
     public Label testLabel;
+
+    public TopBarController(TopBarViewModel topBarViewModel){
+        this.topBarViewModel = new TopBarViewModel();
+    }
 
     @FXML
     private Label welcomeText;
@@ -40,13 +43,14 @@ public class Controller implements Initializable {
 
     @FXML
     protected void searchAction(){
-        viewModel.saveValue();
+        topBarViewModel.saveValue();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        searchTextField.textProperty().bindBidirectional(viewModel.getSearchResult());
-        testLabel.textProperty().bind(viewModel.setLabel());
+        searchTextField.textProperty().bindBidirectional(topBarViewModel.getSearchResult());
+        testLabel.textProperty().bind(topBarViewModel.setLabel());
     }
+
 }

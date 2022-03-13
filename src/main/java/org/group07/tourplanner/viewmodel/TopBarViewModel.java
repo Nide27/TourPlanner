@@ -1,9 +1,11 @@
-package org.group07.tourplanner;
+package org.group07.tourplanner.viewmodel;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class MainViewModel {
+public class TopBarViewModel {
+
+    public TopBarViewModel(){}
 
     private final StringProperty searchResult = new SimpleStringProperty("");
     private final StringProperty testLabel = new SimpleStringProperty("Test");
