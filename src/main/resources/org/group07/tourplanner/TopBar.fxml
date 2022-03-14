@@ -10,12 +10,12 @@
           prefHeight="400.0" prefWidth="600.0">
     <children>
         <Label style="-fx-padding: 10px" text="Tour-Planner" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="4"/>
-        <Button defaultButton="true" onAction="#fileAction" GridPane.columnIndex="0" GridPane.rowIndex="1">File</Button>
-        <Button defaultButton="true" onAction="#editAction" GridPane.columnIndex="1" GridPane.rowIndex="1">Edit</Button>
-        <Button defaultButton="true" onAction="#optionsAction" GridPane.columnIndex="2" GridPane.rowIndex="1">Options</Button>
-        <Button defaultButton="true" onAction="#helpAction" GridPane.columnIndex="3" GridPane.rowIndex="1">Help</Button>
-        <TextField fx:id="searchTextField" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.columnIndex="0">Search...</TextField>
-        <Button defaultButton="true" onAction="#searchAction" text="Search..." GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+        <Button defaultButton="true" onAction="#fileAction" GridPane.columnIndex="0" GridPane.rowIndex="1" text="%Menu_File"/>
+        <Button defaultButton="true" onAction="#editAction" GridPane.columnIndex="1" GridPane.rowIndex="1" text="%Menu_Edit"/>
+        <Button defaultButton="true" onAction="#optionsAction" GridPane.columnIndex="2" GridPane.rowIndex="1" text="%Menu_Options"/>
+        <Button defaultButton="true" onAction="#helpAction" GridPane.columnIndex="3" GridPane.rowIndex="1" text="%Menu_Help"/>
+        <TextField fx:id="searchTextField" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.columnIndex="0" text="%SearchBar_Search"/>
+        <Button defaultButton="true" onAction="#searchAction" text="%SearchBar_Search" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
         <Label fx:id="testLabel" text="Test" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="4"/>
     </children>
     <columnConstraints>

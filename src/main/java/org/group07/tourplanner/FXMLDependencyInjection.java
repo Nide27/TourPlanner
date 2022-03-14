@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 public class FXMLDependencyInjection {
 
     public static Parent load(String location, Locale locale) throws IOException{
-        System.out.println(locale + "  " + location);
         FXMLLoader loader = getLoader(location, locale);
         return loader.load();
     }
