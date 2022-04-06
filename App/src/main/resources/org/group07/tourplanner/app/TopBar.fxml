@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<MenuBar xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         fx:controller="org.group07.tourplanner.app.view.TopBarController">
+    <Menu text="%Menu_File">
+        <MenuItem text="%Menu_File_Import"/>
+        <MenuItem text="%Menu_File_Export"/>
+        <MenuItem text="%Menu_File_Quit" onAction="#onMenuFileQuitClicked"/>
+    </Menu>
+    <Menu text="%Menu_Edit">
+        <MenuItem text="%Menu_Edit_Duplicate"/>
+    </Menu>
+    <Menu text="%Menu_Options">
+        <MenuItem mnemonicParsing="false" text="%Menu_Options_Settings"/>
+    </Menu>
+    <Menu text="%Menu_Help">
+        <MenuItem text="%Menu_Help_About" onAction="#onMenuHelpAboutClicked"/>
+    </Menu>
+</MenuBar>
