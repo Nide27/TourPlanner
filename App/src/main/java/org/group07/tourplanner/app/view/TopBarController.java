@@ -1,7 +1,10 @@
 package org.group07.tourplanner.app.view;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.group07.tourplanner.app.viewmodel.TopBarViewModel;
@@ -45,6 +48,15 @@ public class TopBarController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
+    }
+
+    public void onMenuFileQuitClicked(ActionEvent actionEvent) {
+        Platform.exit();
+    }
+    public void onMenuHelpAboutClicked(ActionEvent actionEvent) {
+        Alert aboutBox = new Alert(Alert.AlertType.INFORMATION, "Semesterproject BIF4-SWE2\nby Edin&Vale");
+        aboutBox.setTitle("About TourPlanner");
+        aboutBox.showAndWait();
     }
 
 }
