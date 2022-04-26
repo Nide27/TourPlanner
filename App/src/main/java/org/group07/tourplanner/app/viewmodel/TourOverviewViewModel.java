@@ -4,6 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import lombok.Getter;
 import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.model.TourItem;
 
@@ -17,14 +18,11 @@ public class TourOverviewViewModel {
 
     private List<SelectionChangedListener> listeners = new ArrayList<>();
 
-    private ObservableList<TourItem> observableMediaItems = FXCollections.observableArrayList();
+    @Getter
+    private ObservableList<TourItem> observableTourItems = FXCollections.observableArrayList();
 
     public TourOverviewViewModel() {
         setTours(DAL.getInstance().getTourItemDao().getAll());
-    }
-
-    public ObservableList<TourItem> getObservableTours() {
-        return observableMediaItems;
     }
 
     public ChangeListener<TourItem> getChangeListener() {

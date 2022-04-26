@@ -18,30 +18,36 @@ import org.group07.tourplanner.dal.model.TourItem;
 
 public class TourOverviewController {
     @FXML
-    public ListView<TourItem> tourItemList;
+    private ListView<TourItem> tourItemList;
 
+    @FXML
+    private Button add;
+
+    @Getter
     private final TourOverviewViewModel tourOverviewViewModel;
 
     public TourOverviewController(TourOverviewViewModel tourOverviewViewModel) {
         this.tourOverviewViewModel = tourOverviewViewModel;
     }
 
-    public TourOverviewViewModel getTourOverviewViewModel() {
-        return tourOverviewViewModel;
-    }
-
     @FXML
     void initialize() {
-        tourItemList.setItems(tourOverviewViewModel.getObservableTours());
+        tourItemList.setItems(tourOverviewViewModel.getObservableTourItems());
         tourItemList.getSelectionModel().selectedItemProperty().addListener(tourOverviewViewModel.getChangeListener());
     }
 
-    public void onButtonAdd(ActionEvent actionEvent) {
-        tourOverviewViewModel.addNewTour();
+    @FXML
+    private void onButtonAdd(ActionEvent actionEvent) {
+
+        //tourOverviewViewModel.addNewTour();
+        // Neue Stage erstellen und dort neue Tour adden
+
+
         tourItemList.getSelectionModel().selectLast();
     }
 
-    public void onButtonRemove(ActionEvent actionEvent) {
+    @FXML
+    private void onButtonRemove(ActionEvent actionEvent) {
         tourOverviewViewModel.deleteTour(tourItemList.getSelectionModel().getSelectedItem());
     }
 }

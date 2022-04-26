@@ -16,7 +16,8 @@ public class BL {
         }
         return tours.stream()
                 .filter(t->t.getName().toLowerCase().contains(searchText.toLowerCase()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toList());*/
+        return Optional.empty();
     }
 
     private static BL instance = new BL();

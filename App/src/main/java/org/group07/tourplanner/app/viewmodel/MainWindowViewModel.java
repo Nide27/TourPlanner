@@ -30,6 +30,6 @@ public class MainWindowViewModel {
 
     private void searchTours(String searchString) {
         var tours = BL.getInstance().findMatchingTours( searchString );
-        tourOverviewViewModel.setTours(tours);
+        tourOverviewViewModel.setTours(tours.get());
     }
 }

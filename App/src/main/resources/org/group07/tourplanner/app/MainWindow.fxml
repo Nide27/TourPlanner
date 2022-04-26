@@ -14,4 +14,3 @@
         <fx:include fx:id="tourDetails" source="TourDetails.fxml"/>
     </SplitPane>
 </VBox>
-
