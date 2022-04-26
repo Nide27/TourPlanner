@@ -12,8 +12,12 @@ import java.io.Serializable;
 public class TourItem implements Serializable {
     private int id;
     private String name;
-    private double duration;
-    private String content;
+    private String description;
+    private String departure;
+    private String destination;
+    private String transport;
+    private float distance;
+    private float estimate;
 
     @Override
     public String toString() {

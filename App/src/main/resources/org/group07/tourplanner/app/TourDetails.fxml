@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="org.group07.tourplanner.app.view.TourDetailsController">
+      fx:controller="org.group07.tourplanner.app.controller.TourDetailsController">
     <ToolBar>
         <Label text="%MediaDetails_Name"/>
         <TextField fx:id="nameTextField" HBox.hgrow="ALWAYS"/>
@@ -14,7 +14,7 @@
                 <AnchorPane/>
             </Tab>
             <Tab text="%MediaDetails_Tab_Description">
-                <TextArea/>
+                <TextArea fx:id="descriptionTextArea"/>
             </Tab>
         </TabPane>
     </SplitPane>

@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.VBox?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.group07.tourplanner.app.view.TourOverviewController">
+      fx:controller="org.group07.tourplanner.app.controller.TourOverviewController">
     <ToolBar>
         <Label text="%MediaOverview_Items"/>
         <Pane HBox.hgrow="ALWAYS"/>
-        <Button text="+" onAction="#onButtonAdd"/>
+        <Button fx:id="add" text="+" onAction="#onButtonAdd"/>
         <Button text="-" onAction="#onButtonRemove"/>
         <Button text="..."/>
     </ToolBar>

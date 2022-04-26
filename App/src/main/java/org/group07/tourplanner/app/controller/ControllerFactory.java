@@ -1,4 +1,4 @@
-package org.group07.tourplanner.app.view;
+package org.group07.tourplanner.app.controller;
 
 import org.group07.tourplanner.app.viewmodel.*;
 
@@ -10,6 +10,7 @@ public class ControllerFactory {
     private final TourOverviewViewModel tourOverviewViewModel;
     private final TourDetailsViewModel tourDetailsViewModel;
     private final TourLogsViewModel tourLogsViewModel;
+    private final CreateTourViewModel createTourViewModel;
 
     private ControllerFactory() {
         topBarViewModel = new TopBarViewModel();
@@ -17,7 +18,8 @@ public class ControllerFactory {
         tourOverviewViewModel = new TourOverviewViewModel();
         tourDetailsViewModel = new TourDetailsViewModel();
         tourLogsViewModel = new TourLogsViewModel();
-        mainWindowViewModel = new MainWindowViewModel(topBarViewModel, searchBarViewModel, tourDetailsViewModel, tourOverviewViewModel, tourLogsViewModel);
+        createTourViewModel = new CreateTourViewModel();
+        mainWindowViewModel = new MainWindowViewModel(topBarViewModel, searchBarViewModel, tourDetailsViewModel, tourOverviewViewModel, tourLogsViewModel, createTourViewModel);
     }
 
     public Object create(Class<?> controllerClass) {
@@ -43,6 +45,10 @@ public class ControllerFactory {
 
         if (controllerClass == TourLogsController.class){
             return new TourLogsController(tourLogsViewModel);
+        }
+
+        if (controllerClass == CreateTourController.class){
+            return new CreateTourController(createTourViewModel);
         }
 
         throw new IllegalArgumentException("Unknown controller class: " + controllerClass);

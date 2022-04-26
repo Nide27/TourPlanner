@@ -1,14 +1,6 @@
 package org.group07.tourplanner.app.viewmodel;
 
 import org.group07.tourplanner.dal.model.TourItem;
-import org.group07.tourplanner.dal.DAL;
-
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
-import java.util.Arrays;
 
 public class TourDetailsViewModel {
     private TourItem tourItemModel;

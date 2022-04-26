@@ -1,6 +1,7 @@
-package org.group07.tourplanner.app.view;
+package org.group07.tourplanner.app.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.group07.tourplanner.app.viewmodel.TourDetailsViewModel;
 
@@ -20,6 +21,7 @@ public class TourDetailsController {
 
     @FXML
     void initialize() {
+        descriptionTextArea.setEditable(false);
         nameTextField.textProperty().bindBidirectional(tourDetailsViewModel.nameProperty());
     }
 }

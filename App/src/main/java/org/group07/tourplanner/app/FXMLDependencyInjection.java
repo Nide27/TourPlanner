@@ -3,7 +3,7 @@ package org.group07.tourplanner.app;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
-import org.group07.tourplanner.app.view.ControllerFactory;
+import org.group07.tourplanner.app.controller.ControllerFactory;
 
 import java.io.IOException;
 import java.util.Locale;

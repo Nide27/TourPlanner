@@ -1,4 +1,4 @@
-package org.group07.tourplanner.app.view;
+package org.group07.tourplanner.app.controller;
 
 import javafx.fxml.FXML;
 import org.group07.tourplanner.app.viewmodel.MainWindowViewModel;

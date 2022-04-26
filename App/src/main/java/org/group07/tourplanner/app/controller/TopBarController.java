@@ -1,4 +1,4 @@
-package org.group07.tourplanner.app.view;
+package org.group07.tourplanner.app.controller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

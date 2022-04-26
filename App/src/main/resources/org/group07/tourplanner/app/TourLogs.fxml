@@ -9,7 +9,7 @@
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.group07.tourplanner.app.view.TourLogsController">
+      fx:controller="org.group07.tourplanner.app.controller.TourLogsController">
     <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS" orientation="VERTICAL">
         <ToolBar>
             <Label text="%MediaOverview_Items"/>
