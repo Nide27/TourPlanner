@@ -11,16 +11,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import lombok.Getter;
 import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.model.TourItem;
 import org.group07.tourplanner.dal.model.TourLog;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class TourLogsViewModel {
 
+    @Getter
+    private ObservableList<TourLog> tourLogsList = FXCollections.observableArrayList();
+
+    private TourItem tourItemModel;
     private List<TourLog> tourLogs = new ArrayList<>();
     private volatile boolean isInitValue = false;
 
@@ -30,6 +36,32 @@ public class TourLogsViewModel {
     private final List<FloatProperty> times = new ArrayList<>();
     private final List<IntegerProperty> rating = new ArrayList<>();
 
+    public TourLogsViewModel(){
+        //setLogs(DAL.getInstance().getTourLogDao().getAllById(tourItemModel.getId()));
+    }
+
+    public void updateTourModel(TourItem tourItemModel){
+        if(tourItemModel == null)
+            return;
+
+        this.tourItemModel = tourItemModel;
+
+        setLogs(DAL.getInstance().getTourLogDao().getAllById(tourItemModel.getId()));
+
+    }
+
+    private void setLogs(List<TourLog> tourLogList){
+        this.tourLogs = tourLogList;
+
+        this.tourLogsList.clear();
+        this.tourLogsList.addAll(tourLogList);
+
+        System.out.println(tourLogList.size());
+    }
+
+    private void updateTourLogs(){
+
+    }
 
  /*   public TourLogsViewModel() {
         dates.addListener( (arg, oldVal, newVal)->updateLogModel());

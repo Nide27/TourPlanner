@@ -5,16 +5,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class TourLog implements Serializable {
-    private int id;
-    private float date;
+    private int tourid;
+    private LocalDateTime date;
     private String comment;
     private String difficulty;
-    private float time;
+    private float duration;
     private int rating;
 }

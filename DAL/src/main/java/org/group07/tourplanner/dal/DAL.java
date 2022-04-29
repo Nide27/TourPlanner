@@ -23,7 +23,7 @@ public class DAL {
     @Getter
     private Dao<TourItem> tourItemDao;
     @Getter
-    private Dao<TourLog> tourLogDao;
+    private TourLogDao tourLogDao;
 
     private DAL() {
         //docker run --rm --detach --name tourplanner -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin123 -v "/Users/edinmuhovic/Documents/FH\ 4.Sem/SWE2/TourPlanner":/var/lib/postgresql/data -p 5432:5432 postgres
@@ -31,7 +31,7 @@ public class DAL {
             conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/tours", "admin", "admin123");
 
             tourItemDao = new TourItemDao(conn);
-            tourLogDao = new TourLogDao();
+            tourLogDao = new TourLogDao(conn);
         } catch (SQLException e) {
             e.printStackTrace();
             //return;

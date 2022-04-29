@@ -15,10 +15,10 @@ public class ControllerFactory {
     private ControllerFactory() {
         topBarViewModel = new TopBarViewModel();
         searchBarViewModel = new SearchBarViewModel();
-        tourOverviewViewModel = new TourOverviewViewModel();
+        createTourViewModel = new CreateTourViewModel();
+        tourOverviewViewModel = new TourOverviewViewModel(createTourViewModel);
         tourDetailsViewModel = new TourDetailsViewModel();
         tourLogsViewModel = new TourLogsViewModel();
-        createTourViewModel = new CreateTourViewModel();
         mainWindowViewModel = new MainWindowViewModel(topBarViewModel, searchBarViewModel, tourDetailsViewModel, tourOverviewViewModel, tourLogsViewModel, createTourViewModel);
     }
 

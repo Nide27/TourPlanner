@@ -39,11 +39,32 @@ public class TourOverviewController {
     @FXML
     private void onButtonAdd(ActionEvent actionEvent) {
 
-        //tourOverviewViewModel.addNewTour();
+        tourOverviewViewModel.addNewTour(add);
         // Neue Stage erstellen und dort neue Tour adden
 
+        /*Label secondLabel = new Label("I'm a Label on new Window");
 
-        tourItemList.getSelectionModel().selectLast();
+        StackPane secondaryLayout = new StackPane();
+        secondaryLayout.getChildren().add(secondLabel);
+
+        Scene secondScene = new Scene(secondaryLayout, 400, 400);
+
+        // New window (Stage)
+        Stage newWindow = new Stage();
+        newWindow.setTitle("Second Stage");
+        newWindow.setScene(secondScene);
+
+        Window mainWindow = add.getScene().getWindow();
+
+
+
+        newWindow.initModality(Modality.WINDOW_MODAL);
+
+        newWindow.initOwner(mainWindow);
+
+        newWindow.show();
+
+        tourItemList.getSelectionModel().selectLast();*/
     }
 
     @FXML

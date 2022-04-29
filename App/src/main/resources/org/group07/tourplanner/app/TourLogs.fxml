@@ -7,23 +7,33 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<VBox xmlns="http://javafx.com/javafx"
+<HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.group07.tourplanner.app.controller.TourLogsController">
-    <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS" orientation="VERTICAL">
+    <SplitPane dividerPositions="0.5" HBox.hgrow="ALWAYS" orientation="VERTICAL">
         <ToolBar>
-            <Label text="%MediaOverview_Items"/>
+            <Label text="%TourOverview_Items"/>
             <Pane HBox.hgrow="ALWAYS"/>
             <Button text="+"/>
             <Button text="-"/>
             <Button text="..."/>
         </ToolBar>
 
-        <TableView>
+        <TableView fx:id="tourLogsTable">
             <columns>
                 <TableColumn fx:id="dateColumn" text="%Logs_Date">
                     <cellValueFactory>
                         <PropertyValueFactory property="date"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="commentColumn" text="%Logs_Comment">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="comment"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="difficultyColumn" text="%Logs_Difficulty">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="difficulty"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn fx:id="durationColumn" text="%Logs_Duration">
@@ -31,12 +41,12 @@
                         <PropertyValueFactory property="duration"/>
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="distanceColumn" text="%Logs_Distance">
+                <TableColumn fx:id="ratingColumn" text="%Logs_Rating">
                     <cellValueFactory>
-                        <PropertyValueFactory property="distance"/>
+                        <PropertyValueFactory property="rating"/>
                     </cellValueFactory>
                 </TableColumn>
             </columns>
         </TableView>
     </SplitPane>
-</VBox>
+</HBox>

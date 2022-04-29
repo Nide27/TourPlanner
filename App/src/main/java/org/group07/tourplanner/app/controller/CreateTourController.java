@@ -1,17 +1,27 @@
 package org.group07.tourplanner.app.controller;
 
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.Window;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import org.group07.tourplanner.app.viewmodel.CreateTourViewModel;
+import org.group07.tourplanner.app.viewmodel.TourDetailsViewModel;
 
 public class CreateTourController {
 
-    public CreateTourController(CreateTourViewModel createTourViewModel) {
+    @FXML
+    private TextField tourName;
+    @FXML
+    private TextField description;
 
+    private final CreateTourViewModel createTourViewModel;
+
+    public CreateTourController(CreateTourViewModel createTourViewModel) {
+        this.createTourViewModel = createTourViewModel;
+    }
+
+    @FXML
+    void initialize() {
+        tourName.textProperty().bindBidirectional(createTourViewModel.getName());
+        tourName.textProperty().bindBidirectional(createTourViewModel.getDescription());
     }
 
 /*    Label secondLabel = new Label("I'm a Label on new Window");

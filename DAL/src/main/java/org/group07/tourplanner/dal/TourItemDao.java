@@ -15,9 +15,6 @@ public class TourItemDao implements Dao<TourItem> {
 
     private final Connection conn;
 
-    private List<TourItem> tourItems = new ArrayList<>();
-    private int nextId = 1;
-
     public TourItemDao(Connection conn) {
         this.conn = conn;
     }
