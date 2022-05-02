@@ -12,14 +12,17 @@ public class ControllerFactory {
     private final TourLogsViewModel tourLogsViewModel;
     private final CreateTourViewModel createTourViewModel;
 
+    private final CreateLogsViewModel createLogsViewModel;
+
     private ControllerFactory() {
         topBarViewModel = new TopBarViewModel();
         searchBarViewModel = new SearchBarViewModel();
         createTourViewModel = new CreateTourViewModel();
+        createLogsViewModel = new CreateLogsViewModel();
         tourOverviewViewModel = new TourOverviewViewModel(createTourViewModel);
         tourDetailsViewModel = new TourDetailsViewModel();
         tourLogsViewModel = new TourLogsViewModel();
-        mainWindowViewModel = new MainWindowViewModel(topBarViewModel, searchBarViewModel, tourDetailsViewModel, tourOverviewViewModel, tourLogsViewModel, createTourViewModel);
+        mainWindowViewModel = new MainWindowViewModel(topBarViewModel, searchBarViewModel, tourDetailsViewModel, tourOverviewViewModel, tourLogsViewModel, createTourViewModel, createLogsViewModel);
     }
 
     public Object create(Class<?> controllerClass) {
@@ -49,6 +52,10 @@ public class ControllerFactory {
 
         if (controllerClass == CreateTourController.class){
             return new CreateTourController(createTourViewModel);
+        }
+
+        if (controllerClass == CreateLogsController.class){
+            return new CreateLogsController(createLogsViewModel);
         }
 
         throw new IllegalArgumentException("Unknown controller class: " + controllerClass);

@@ -52,7 +52,7 @@ public class TourOverviewViewModel {
     public void addNewTour(Button button) {
 
         //DAL.getInstance().getTourItemDao().create(tourItem);
-        createTourViewModel.createWindow(button);
+        createTourViewModel.createWindow(button, observableTourItems);
         //observableMediaItems.add(tour);
     }
 

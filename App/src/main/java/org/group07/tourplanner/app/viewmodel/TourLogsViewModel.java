@@ -23,6 +23,22 @@ import java.util.List;
 
 public class TourLogsViewModel {
 
+    public interface SelectionChangedListener {
+        void changeSelection(TourLog tourLog);
+    }
+
+    private List<TourLogsViewModel.SelectionChangedListener> listeners = new ArrayList<>();
+
+    public ChangeListener<TourLog> getChangeListener() {
+        return (observableValue, oldValue, newValue) -> notifyListeners(newValue);
+    }
+
+    private void notifyListeners(TourLog newValue) {
+        for ( var listener : listeners ) {
+            listener.changeSelection(newValue);
+        }
+    }
+
     @Getter
     private ObservableList<TourLog> tourLogsList = FXCollections.observableArrayList();
 
@@ -61,6 +77,14 @@ public class TourLogsViewModel {
 
     private void updateTourLogs(){
 
+    }
+
+    public void deleteTourLog(TourLog tourLog){
+        if(tourLog == null)
+            return;
+
+        DAL.getInstance().getTourLogDao().delete(tourLog);
+        tourLogsList.remove(tourLog);
     }
 
  /*   public TourLogsViewModel() {

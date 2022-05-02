@@ -11,7 +11,7 @@ import java.util.Locale;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLDependencyInjection.load("MainWindow.fxml", Locale.GERMAN);
+        Parent root = FXMLDependencyInjection.load("MainWindow.fxml", Locale.ENGLISH);
         /*FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 400, 300);*/
         Scene scene = new Scene(root);

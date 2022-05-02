@@ -92,6 +92,8 @@ public class TourItemDao implements Dao<TourItem> {
         stmt.setString(5, tourItem.getTransport());
         stmt.setFloat(6, tourItem.getDistance());
         stmt.setFloat(7, tourItem.getEstimate());
+
+        stmt.execute();
     }
 
     @SneakyThrows

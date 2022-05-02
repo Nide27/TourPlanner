@@ -1,16 +1,30 @@
 package org.group07.tourplanner.app.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Window;
+import org.group07.tourplanner.app.helper.AlertHelper;
 import org.group07.tourplanner.app.viewmodel.CreateTourViewModel;
-import org.group07.tourplanner.app.viewmodel.TourDetailsViewModel;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class CreateTourController {
-
     @FXML
-    private TextField tourName;
+    private Button submitButton;
     @FXML
-    private TextField description;
+    private TextField nameField;
+    @FXML
+    private TextField descriptionField;
+    @FXML
+    private TextField fromField;
+    @FXML
+    private TextField toField;
+    @FXML
+    private TextField transportField;
 
     private final CreateTourViewModel createTourViewModel;
 
@@ -20,29 +34,37 @@ public class CreateTourController {
 
     @FXML
     void initialize() {
-        tourName.textProperty().bindBidirectional(createTourViewModel.getName());
-        tourName.textProperty().bindBidirectional(createTourViewModel.getDescription());
+        nameField.textProperty().bindBidirectional(createTourViewModel.getName());
+        descriptionField.textProperty().bindBidirectional(createTourViewModel.getDescription());
+        fromField.textProperty().bindBidirectional(createTourViewModel.getFrom());
+        toField.textProperty().bindBidirectional(createTourViewModel.getTo());
+        transportField.textProperty().bindBidirectional(createTourViewModel.getTransport());
     }
 
-/*    Label secondLabel = new Label("I'm a Label on new Window");
+    public void addTour(ActionEvent actionEvent) {
+        ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", Locale.ENGLISH);
+        Window owner = submitButton.getScene().getWindow();
+        if(nameField.getText().isEmpty()){
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_NAME"));
+            return;
+        }
+        if(descriptionField.getText().isEmpty()){
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_DESCRIPTION"));
+            return;
+        }
+        if(fromField.getText().isEmpty()){
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_FROM"));
+            return;
+        }
+        if(toField.getText().isEmpty()){
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_TO"));
+            return;
+        }
+        if(transportField.getText().isEmpty()){
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_TRANSPORT"));
+            return;
+        }
 
-    StackPane secondaryLayout = new StackPane();
-        secondaryLayout.getChildren().add(secondLabel);
-
-    Scene secondScene = new Scene(secondaryLayout, 400, 400);
-
-    // New window (Stage)
-    Stage newWindow = new Stage();
-        newWindow.setTitle("Second Stage");
-        newWindow.setScene(secondScene);
-
-    Window mainWindow = add.getScene().getWindow();
-
-
-
-    newWindow.initModality(Modality.WINDOW_MODAL);
-
-    newWindow.initOwner(mainWindow);
-
-    newWindow.show();*/
+        this.createTourViewModel.createTour();
+    }
 }

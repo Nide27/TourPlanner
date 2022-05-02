@@ -15,7 +15,7 @@
             <Label text="%TourOverview_Items"/>
             <Pane HBox.hgrow="ALWAYS"/>
             <Button text="+"/>
-            <Button text="-"/>
+            <Button fx:id="delButton" text="-" onAction="#onButtonDel"/>
             <Button text="..."/>
         </ToolBar>
 
