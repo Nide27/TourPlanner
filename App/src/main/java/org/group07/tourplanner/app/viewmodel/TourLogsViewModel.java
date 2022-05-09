@@ -23,6 +23,28 @@ import java.util.List;
 
 public class TourLogsViewModel {
 
+    @Getter
+    private ObservableList<TourLog> tourLogsList = FXCollections.observableArrayList();
+
+    private final CreateTourLogViewModel createTourLogViewModel;
+    private final EditTourLogViewModel editTourLogViewModel;
+
+    private TourItem tourItemModel;
+    private List<TourLog> tourLogs = new ArrayList<>();
+    private volatile boolean isInitValue = false;
+
+    //private final ListProperty<String> dates = new ListProperty<String>();
+    private final List<StringProperty> comments = new ArrayList<>();
+    private final List<StringProperty> difficulties = new ArrayList<>();
+    private final List<FloatProperty> times = new ArrayList<>();
+    private final List<IntegerProperty> rating = new ArrayList<>();
+
+    public TourLogsViewModel(CreateTourLogViewModel createTourLogViewModel, EditTourLogViewModel editTourLogViewModel){
+        //setLogs(DAL.getInstance().getTourLogDao().getAllById(tourItemModel.getId()));
+        this.createTourLogViewModel = createTourLogViewModel;
+        this.editTourLogViewModel = editTourLogViewModel;
+    }
+
     public interface SelectionChangedListener {
         void changeSelection(TourLog tourLog);
     }
@@ -37,23 +59,6 @@ public class TourLogsViewModel {
         for ( var listener : listeners ) {
             listener.changeSelection(newValue);
         }
-    }
-
-    @Getter
-    private ObservableList<TourLog> tourLogsList = FXCollections.observableArrayList();
-
-    private TourItem tourItemModel;
-    private List<TourLog> tourLogs = new ArrayList<>();
-    private volatile boolean isInitValue = false;
-
-    //private final ListProperty<String> dates = new ListProperty<String>();
-    private final List<StringProperty> comments = new ArrayList<>();
-    private final List<StringProperty> difficulties = new ArrayList<>();
-    private final List<FloatProperty> times = new ArrayList<>();
-    private final List<IntegerProperty> rating = new ArrayList<>();
-
-    public TourLogsViewModel(){
-        //setLogs(DAL.getInstance().getTourLogDao().getAllById(tourItemModel.getId()));
     }
 
     public void updateTourModel(TourItem tourItemModel){
@@ -75,8 +80,11 @@ public class TourLogsViewModel {
         System.out.println(tourLogList.size());
     }
 
-    private void updateTourLogs(){
+    public void createTourLog(){
+        if(tourItemModel == null)
+            return;
 
+        this.createTourLogViewModel.createWindow(this.tourLogsList, tourItemModel);
     }
 
     public void deleteTourLog(TourLog tourLog){
@@ -87,61 +95,10 @@ public class TourLogsViewModel {
         tourLogsList.remove(tourLog);
     }
 
- /*   public TourLogsViewModel() {
-        dates.addListener( (arg, oldVal, newVal)->updateLogModel());
+    public void editTourLog(TourLog tourLog){
+        if(tourLog == null)
+            return;
+
+        this.editTourLogViewModel.createWindow(tourLogsList, tourLog);
     }
-
-    private void updateLogModel() {
-        if( !isInitValue )
-            DAL.getInstance().tourItemDao().update(tourItemModel, Arrays.asList(tourItemModel.getId(), name.get(), distance.get(), estimate.get()));
-    }
-*/
-    /*public interface SelectionChangedListener {
-        void changeSelection(TourLog tourLog);
-    }
-
-
-private ObservableList<TourLog> observableLogItems = FXCollections.observableArrayList();
-
-    public TourLogsViewModel() {
-        setLogs( DAL.getInstance().tourLogDao().getAll() );
-    }
-
-    public void setLogs(List<TourLog> tourLog) {
-        observableLogItems.clear();
-        observableLogItems.addAll(tourLog);
-    }
-
-
-    private List<SelectionChangedListener> listeners = new ArrayList<>();
-
-    private ObservableList<TourLog> observableMediaItems = FXCollections.observableArrayList();
-
-
-    public ChangeListener<TourLog> getChangeListener() {
-        return (observableValue, oldValue, newValue) -> notifyListeners(newValue);
-    }
-
-    public void addSelectionChangedListener(SelectionChangedListener listener) {
-        listeners.add(listener);
-    }
-
-    public void removeSelectionChangedListener(SelectionChangedListener listener) {
-        listeners.remove(listener);
-    }
-
-    private void notifyListeners(TourLog newValue) {
-        for ( var listener : listeners ) {
-            listener.changeSelection(newValue);
-        }
-    }
-
-
-    public void setLogs(List<TourLog> tourLog) {
-        observableMediaItems.clear();
-        observableMediaItems.addAll(tourLog);
-    }*/
-
-
-
 }

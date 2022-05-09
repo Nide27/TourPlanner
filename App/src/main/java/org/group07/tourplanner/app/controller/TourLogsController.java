@@ -14,9 +14,6 @@ import org.group07.tourplanner.dal.model.TourLog;
 public class TourLogsController {
 
     @FXML
-    private Button delButton;
-
-    @FXML
     private TableView<TourLog> tourLogsTable;
 
     @FXML
@@ -48,7 +45,20 @@ public class TourLogsController {
     }
 
     @FXML
+    private void onButtonAdd(ActionEvent actionEvent){
+        this.tourLogsViewModel.createTourLog();
+    }
+
+    @FXML
     private void onButtonDel(ActionEvent actionEvent){
         tourLogsViewModel.deleteTourLog(tourLogsTable.getSelectionModel().getSelectedItem());
+    }
+
+    @FXML
+    private void onButtonEdit(ActionEvent actionEvent){
+        if(tourLogsTable.getSelectionModel().getSelectedItem() == null)
+            return;
+
+        this.tourLogsViewModel.editTourLog(tourLogsTable.getSelectionModel().getSelectedItem());
     }
 }

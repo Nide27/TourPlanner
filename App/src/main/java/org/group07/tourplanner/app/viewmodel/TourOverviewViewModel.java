@@ -4,7 +4,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import javafx.scene.control.Button;
 import lombok.Getter;
 import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.model.TourItem;
@@ -23,11 +22,13 @@ public class TourOverviewViewModel {
     @Getter
     private ObservableList<TourItem> observableTourItems = FXCollections.observableArrayList();
 
-    private final CreateTourViewModel createTourViewModel;
+    private final CreateTourItemViewModel createTourItemViewModel;
+    private final EditTourItemViewModel editTourItemViewModel;
 
-    public TourOverviewViewModel(CreateTourViewModel createTourViewModel) {
+    public TourOverviewViewModel(CreateTourItemViewModel createTourItemViewModel, EditTourItemViewModel editTourItemViewModel) {
         setTours(DAL.getInstance().getTourItemDao().getAll());
-        this.createTourViewModel = createTourViewModel;
+        this.createTourItemViewModel = createTourItemViewModel;
+        this.editTourItemViewModel = editTourItemViewModel;
     }
 
     public ChangeListener<TourItem> getChangeListener() {
@@ -49,15 +50,25 @@ public class TourOverviewViewModel {
         observableTourItems.addAll(tourItems);
     }
 
-    public void addNewTour(Button button) {
+    public void addNewTour() {
 
         //DAL.getInstance().getTourItemDao().create(tourItem);
-        createTourViewModel.createWindow(button, observableTourItems);
+        createTourItemViewModel.createWindow(observableTourItems);
         //observableMediaItems.add(tour);
     }
 
     public void deleteTour(TourItem tourItem) {
+        if(tourItem == null)
+            return;
+
         DAL.getInstance().getTourItemDao().delete(tourItem);
         observableTourItems.remove(tourItem);
+    }
+
+    public void updateTour(TourItem tourItem){
+        if(tourItem == null)
+            return;
+
+        editTourItemViewModel.createWindow(observableTourItems, tourItem);
     }
 }

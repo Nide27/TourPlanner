@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <GridPane xmlns="http://javafx.com/javafx"
           xmlns:fx="http://javafx.com/fxml"
-          fx:controller="org.group07.tourplanner.app.controller.CreateTourController"
+          fx:controller="org.group07.tourplanner.app.controller.EditTourItemController"
           alignment="center"
           hgap="10" vgap="10">
 
@@ -25,7 +25,7 @@
         </ColumnConstraints>
     </columnConstraints>
 
-    <Label text="%Create_Head" GridPane.columnIndex="0"
+    <Label text="%Edit_Head" GridPane.columnIndex="0"
            GridPane.rowIndex="0" GridPane.columnSpan="2"
            GridPane.rowSpan="1" GridPane.halignment="CENTER" >
         <font>
@@ -53,25 +53,25 @@
     <TextField fx:id="transportField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
 
 
-    <Button fx:id="submitButton" text="Submit"
+    <Button fx:id="submitButton" text="Update"
             prefWidth="100" prefHeight="40" defaultButton="true"
             GridPane.columnIndex="0" GridPane.rowIndex="6"
             GridPane.columnSpan="2" GridPane.rowSpan="1"
             GridPane.halignment="CENTER"
-            onAction="#addTour">
+            onAction="#editTour">
         <GridPane.margin>
             <Insets top="20" bottom="20"/>
         </GridPane.margin>
     </Button>
 
-   <!-- <Text text="Welcome" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+    <!-- <Text text="Welcome" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2"/>
 
-    <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+     <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
 
-    <TextField fx:id="tourName" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+     <TextField fx:id="tourName" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
-    <Label text="Descr:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+     <Label text="Descr:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
 
-    <TextField fx:id="description" GridPane.columnIndex="1" GridPane.rowIndex="2"/>-->
+     <TextField fx:id="description" GridPane.columnIndex="1" GridPane.rowIndex="2"/>-->
 
 </GridPane>

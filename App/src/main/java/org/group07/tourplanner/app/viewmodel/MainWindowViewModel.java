@@ -10,17 +10,17 @@ public class MainWindowViewModel {
     private TourDetailsViewModel tourDetailsViewModel;
     private TourOverviewViewModel tourOverviewViewModel;
     private TourLogsViewModel tourLogsViewModel;
-    private CreateTourViewModel createTourViewModel;
-    private CreateLogsViewModel createLogsViewModel;
+    private CreateTourItemViewModel createTourItemViewModel;
+    private CreateTourLogViewModel createTourLogViewModel;
 
-    public MainWindowViewModel(TopBarViewModel topBarViewModel, SearchBarViewModel searchBarViewModel, TourDetailsViewModel tourDetailsViewModel, TourOverviewViewModel tourOverviewViewModel, TourLogsViewModel tourLogsViewModel, CreateTourViewModel createTourViewModel, CreateLogsViewModel createLogsViewModel) {
+    public MainWindowViewModel(TopBarViewModel topBarViewModel, SearchBarViewModel searchBarViewModel, TourDetailsViewModel tourDetailsViewModel, TourOverviewViewModel tourOverviewViewModel, TourLogsViewModel tourLogsViewModel, CreateTourItemViewModel createTourItemViewModel, CreateTourLogViewModel createTourLogViewModel) {
         this.topBarViewModel = topBarViewModel;
         this.searchBarViewModel = searchBarViewModel;
         this.tourDetailsViewModel = tourDetailsViewModel;
         this.tourOverviewViewModel = tourOverviewViewModel;
         this.tourLogsViewModel = tourLogsViewModel;
-        this.createTourViewModel = createTourViewModel;
-        this.createLogsViewModel = createLogsViewModel;
+        this.createTourItemViewModel = createTourItemViewModel;
+        this.createTourLogViewModel = createTourLogViewModel;
         this.searchBarViewModel.addSearchListener(searchString -> searchTours(searchString));
 
         this.tourOverviewViewModel.addSelectionChangedListener(selectTour -> selectTour(selectTour));

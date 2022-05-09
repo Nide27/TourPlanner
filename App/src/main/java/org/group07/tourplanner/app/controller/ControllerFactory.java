@@ -10,19 +10,22 @@ public class ControllerFactory {
     private final TourOverviewViewModel tourOverviewViewModel;
     private final TourDetailsViewModel tourDetailsViewModel;
     private final TourLogsViewModel tourLogsViewModel;
-    private final CreateTourViewModel createTourViewModel;
-
-    private final CreateLogsViewModel createLogsViewModel;
+    private final CreateTourItemViewModel createTourItemViewModel;
+    private final EditTourItemViewModel editTourItemViewModel;
+    private final EditTourLogViewModel editTourLogViewModel;
+    private final CreateTourLogViewModel createTourLogViewModel;
 
     private ControllerFactory() {
         topBarViewModel = new TopBarViewModel();
         searchBarViewModel = new SearchBarViewModel();
-        createTourViewModel = new CreateTourViewModel();
-        createLogsViewModel = new CreateLogsViewModel();
-        tourOverviewViewModel = new TourOverviewViewModel(createTourViewModel);
+        createTourItemViewModel = new CreateTourItemViewModel();
+        createTourLogViewModel = new CreateTourLogViewModel();
+        editTourItemViewModel = new EditTourItemViewModel();
+        editTourLogViewModel = new EditTourLogViewModel();
+        tourOverviewViewModel = new TourOverviewViewModel(createTourItemViewModel, editTourItemViewModel);
         tourDetailsViewModel = new TourDetailsViewModel();
-        tourLogsViewModel = new TourLogsViewModel();
-        mainWindowViewModel = new MainWindowViewModel(topBarViewModel, searchBarViewModel, tourDetailsViewModel, tourOverviewViewModel, tourLogsViewModel, createTourViewModel, createLogsViewModel);
+        tourLogsViewModel = new TourLogsViewModel(createTourLogViewModel, editTourLogViewModel);
+        mainWindowViewModel = new MainWindowViewModel(topBarViewModel, searchBarViewModel, tourDetailsViewModel, tourOverviewViewModel, tourLogsViewModel, createTourItemViewModel, createTourLogViewModel);
     }
 
     public Object create(Class<?> controllerClass) {
@@ -50,12 +53,20 @@ public class ControllerFactory {
             return new TourLogsController(tourLogsViewModel);
         }
 
-        if (controllerClass == CreateTourController.class){
-            return new CreateTourController(createTourViewModel);
+        if (controllerClass == CreateTourItemController.class){
+            return new CreateTourItemController(createTourItemViewModel);
         }
 
-        if (controllerClass == CreateLogsController.class){
-            return new CreateLogsController(createLogsViewModel);
+        if (controllerClass == CreateTourLogController.class){
+            return new CreateTourLogController(createTourLogViewModel);
+        }
+
+        if(controllerClass == EditTourItemController.class){
+            return new EditTourItemController(editTourItemViewModel);
+        }
+
+        if(controllerClass == EditTourLogController.class){
+            return new EditTourLogController(editTourLogViewModel);
         }
 
         throw new IllegalArgumentException("Unknown controller class: " + controllerClass);

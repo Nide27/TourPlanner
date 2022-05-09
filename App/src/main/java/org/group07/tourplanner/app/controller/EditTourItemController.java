@@ -7,12 +7,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import org.group07.tourplanner.app.helper.AlertHelper;
-import org.group07.tourplanner.app.viewmodel.CreateTourViewModel;
+import org.group07.tourplanner.app.viewmodel.EditTourItemViewModel;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-public class CreateTourController {
+public class EditTourItemController {
+
     @FXML
     private Button submitButton;
     @FXML
@@ -26,45 +27,46 @@ public class CreateTourController {
     @FXML
     private TextField transportField;
 
-    private final CreateTourViewModel createTourViewModel;
+    private final EditTourItemViewModel editTourItemViewModel;
 
-    public CreateTourController(CreateTourViewModel createTourViewModel) {
-        this.createTourViewModel = createTourViewModel;
+    public EditTourItemController(EditTourItemViewModel editTourItemViewModel){
+        this.editTourItemViewModel = editTourItemViewModel;
     }
 
     @FXML
     void initialize() {
-        nameField.textProperty().bindBidirectional(createTourViewModel.getName());
-        descriptionField.textProperty().bindBidirectional(createTourViewModel.getDescription());
-        fromField.textProperty().bindBidirectional(createTourViewModel.getFrom());
-        toField.textProperty().bindBidirectional(createTourViewModel.getTo());
-        transportField.textProperty().bindBidirectional(createTourViewModel.getTransport());
+        nameField.textProperty().bindBidirectional(editTourItemViewModel.getName());
+        descriptionField.textProperty().bindBidirectional(editTourItemViewModel.getDescription());
+        fromField.textProperty().bindBidirectional(editTourItemViewModel.getFrom());
+        toField.textProperty().bindBidirectional(editTourItemViewModel.getTo());
+        transportField.textProperty().bindBidirectional(editTourItemViewModel.getTransport());
     }
 
-    public void addTour(ActionEvent actionEvent) {
+    @FXML
+    private void editTour(ActionEvent actionEvent){
         ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", Locale.ENGLISH);
         Window owner = submitButton.getScene().getWindow();
-        if(nameField.getText().isEmpty()){
+        if(nameField.getText() == null || nameField.getText().isEmpty()){
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_NAME"));
             return;
         }
-        if(descriptionField.getText().isEmpty()){
+        if(descriptionField.getText() == null || descriptionField.getText().isEmpty()){
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_DESCRIPTION"));
             return;
         }
-        if(fromField.getText().isEmpty()){
+        if(fromField.getText() == null || fromField.getText().isEmpty()){
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_FROM"));
             return;
         }
-        if(toField.getText().isEmpty()){
+        if(toField.getText() == null || toField.getText().isEmpty()){
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_TO"));
             return;
         }
-        if(transportField.getText().isEmpty()){
+        if(transportField.getText() == null || transportField.getText().isEmpty()){
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_TRANSPORT"));
             return;
         }
 
-        this.createTourViewModel.createTour();
+        this.editTourItemViewModel.editTour();
     }
 }

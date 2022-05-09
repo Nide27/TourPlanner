@@ -1,5 +1,7 @@
 CREATE DATABASE
 
+docker run --rm --detach --name tourplanner -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin123 -v "/Users/edinmuhovic/Documents/FH\ 4.Sem/SWE2/TourPlanner":/var/lib/postgresql/data -p 5432:5432 postgres
+
 docker exec -it tourplanner bash
 
 psql -p 5432 -h localhost -U admin
@@ -21,10 +23,10 @@ CREATE TABLE items (
 
 CREATE TABLE logs (
                       tourid INT NOT NULL,
-                      datetime timestamp NOT NULL,
+                      datetime DATE NOT NULL,
                       comment VARCHAR ( 255 ) NOT NULL,
                       difficulty INT NOT NULL,
-                      duration FLOAT NOT NULL,
+                      duration INT NOT NULL,
                       rating INT NOT NULL,
                       PRIMARY KEY (tourid, datetime),
                       CONSTRAINT fk_tour
