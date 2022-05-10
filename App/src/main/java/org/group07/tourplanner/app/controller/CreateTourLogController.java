@@ -1,6 +1,5 @@
 package org.group07.tourplanner.app.controller;
 
-import com.sun.javafx.scene.control.IntegerField;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -12,8 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import org.group07.tourplanner.app.helper.AlertHelper;
 import org.group07.tourplanner.app.viewmodel.CreateTourLogViewModel;
+import org.group07.tourplanner.dal.ConfigManager;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class CreateTourLogController {
@@ -50,16 +49,15 @@ public class CreateTourLogController {
         durationMinuteField.textProperty().bindBidirectional(createTourLogViewModel.getDurationMinuteField());
         ratingField.textProperty().bindBidirectional(createTourLogViewModel.getRatingField());
 
-        ratingField.textProperty().addListener(new ChangeListener<String>() {
-            public void changed(ObservableValue<? extends String> observable, String oldValue,
-                                String newValue) {
-                //\\d*
-                if (!newValue.matches("\\d*"))  {
-                    //[^\d]
-                    ratingField.setText(newValue.replaceAll("\\b([1-9]|10)\\b", ""));
+       /* ratingField.textProperty().addListener(new ChangeListener<String>() {
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\b([1-9]|10)\\b")) {
+                    System.out.println("d");
+                    ratingField.setText(newValue.replaceAll("[^\\d]", ""));
+
                 }
             }
-        });
+        });*/
     }
 
     public CreateTourLogController(CreateTourLogViewModel createTourLogViewModel) {
@@ -68,7 +66,7 @@ public class CreateTourLogController {
 
     @FXML
     private void addTourLog(ActionEvent actionEvent){
-        ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", Locale.ENGLISH);
+        ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", ConfigManager.getInstance().getLocale());
         Window owner = submitButton.getScene().getWindow();
 
         if(datePicker.getValue() == null){
@@ -88,6 +86,13 @@ public class CreateTourLogController {
             return;
         }
         if(ratingField.getText() == null || ratingField.getText().isEmpty()){
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_RATING"));
+            return;
+        }
+        try {
+            Integer.parseInt(ratingField.getText());
+            //Check if less than 10
+        } catch(Exception e){
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_RATING"));
             return;
         }

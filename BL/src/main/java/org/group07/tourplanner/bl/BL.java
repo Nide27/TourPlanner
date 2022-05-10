@@ -9,16 +9,16 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class BL {
-    public Optional<ArrayList<TourItem>> findMatchingTours(String searchText) {
-        /*var tours = DAL.getInstance().getTourItemDao().getAll();
+/*    public Optional<ArrayList<TourItem>> findMatchingTours(String searchText) {
+        *//*var tours = DAL.getInstance().getTourItemDao().getAll();
         if (searchText==null || searchText.isEmpty()) {
             return tours;
         }
         return tours.stream()
                 .filter(t->t.getName().toLowerCase().contains(searchText.toLowerCase()))
-                .collect(Collectors.toList());*/
+                .collect(Collectors.toList());*//*
         return Optional.empty();
-    }
+    }*/
 
     private static BL instance = new BL();
 

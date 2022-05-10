@@ -7,15 +7,16 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.group07.tourplanner.app.FXMLDependencyInjection;
+import org.group07.tourplanner.dal.ConfigManager;
 import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.model.TourLog;
 
 import java.time.LocalDate;
-import java.util.Locale;
 
 public class EditTourLogViewModel {
 
@@ -51,13 +52,16 @@ public class EditTourLogViewModel {
 
         this.tourLogsList = list;
 
-        Parent root = FXMLDependencyInjection.load("EditTourLog.fxml", Locale.ENGLISH);
+        Parent root = FXMLDependencyInjection.load("EditTourLog.fxml", ConfigManager.getInstance().getLocale());
+        //LocalThread oder Singelton und dort alles speichern
+        //Alle konfigurations paramter dort ablegen und dann Singelton verwenden
 
         Scene newScene = new Scene(root);
 
         newStage = new Stage();
         newStage.setTitle("Edit TourLog");
         newStage.setScene(newScene);
+        newStage.initModality(Modality.APPLICATION_MODAL);
 
         newStage.showAndWait();
     }

@@ -4,14 +4,14 @@ import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.group07.tourplanner.dal.ConfigManager;
 
 import java.io.IOException;
-import java.util.Locale;
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLDependencyInjection.load("MainWindow.fxml", Locale.ENGLISH);
+        Parent root = FXMLDependencyInjection.load("MainWindow.fxml", ConfigManager.getInstance().getLocale());
         /*FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 400, 300);*/
         Scene scene = new Scene(root);

@@ -8,8 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import org.group07.tourplanner.app.helper.AlertHelper;
 import org.group07.tourplanner.app.viewmodel.EditTourItemViewModel;
+import org.group07.tourplanner.dal.ConfigManager;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class EditTourItemController {
@@ -44,7 +44,7 @@ public class EditTourItemController {
 
     @FXML
     private void editTour(ActionEvent actionEvent){
-        ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", Locale.ENGLISH);
+        ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", ConfigManager.getInstance().getLocale());
         Window owner = submitButton.getScene().getWindow();
         if(nameField.getText() == null || nameField.getText().isEmpty()){
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_NAME"));

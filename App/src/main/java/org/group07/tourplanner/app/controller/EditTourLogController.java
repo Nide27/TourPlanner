@@ -9,8 +9,8 @@ import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import org.group07.tourplanner.app.helper.AlertHelper;
 import org.group07.tourplanner.app.viewmodel.EditTourLogViewModel;
+import org.group07.tourplanner.dal.ConfigManager;
 
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class EditTourLogController {
@@ -54,7 +54,7 @@ public class EditTourLogController {
 
     @FXML
     private void editTourLog(ActionEvent actionEvent){
-        ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", Locale.ENGLISH);
+        ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", ConfigManager.getInstance().getLocale());
         Window owner = submitButton.getScene().getWindow();
 
         if(datePicker.getValue() == null){

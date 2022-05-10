@@ -12,6 +12,7 @@
         <module name="TourPlanner" />
         <module name="DAL" />
       </profile>
+      <profile name="Disabled" enabled="true" />
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="App" target="17" />

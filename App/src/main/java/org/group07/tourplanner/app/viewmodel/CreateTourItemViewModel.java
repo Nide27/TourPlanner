@@ -5,18 +5,16 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.group07.tourplanner.app.FXMLDependencyInjection;
-import org.group07.tourplanner.app.helper.AlertHelper;
+import org.group07.tourplanner.dal.ConfigManager;
 import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.model.TourItem;
 
 import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class CreateTourItemViewModel {
 
@@ -43,7 +41,7 @@ public class CreateTourItemViewModel {
         System.out.println(country);
         //ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", Locale.getDefault());
 
-        Parent root = FXMLDependencyInjection.load("CreateTourItem.fxml", Locale.ENGLISH);
+        Parent root = FXMLDependencyInjection.load("CreateTourItem.fxml", ConfigManager.getInstance().getLocale());
 
         //Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/group07/tourplanner/app/CreateTourItem.fxml")));
         //Label secondLabel = new Label("I'm a Label on new Window");
@@ -62,6 +60,7 @@ public class CreateTourItemViewModel {
         //newWindow.initModality(Modality.WINDOW_MODAL);
 
         //newWindow.initOwner(main);
+        newStage.initModality(Modality.APPLICATION_MODAL);
 
         newStage.showAndWait();
     }
