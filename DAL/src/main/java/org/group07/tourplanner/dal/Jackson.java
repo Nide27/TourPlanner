@@ -3,11 +3,13 @@ package org.group07.tourplanner.dal;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
 
 public class Jackson {
 
     private static Jackson instance;
 
+    @Getter
     private final ObjectMapper objMapper;
 
     public static Jackson getInstance(){

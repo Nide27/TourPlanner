@@ -18,7 +18,7 @@ public class ConfigManager {
     @Getter
     private String dbPassword = "admin123";
     @Getter
-    private Locale locale = Locale.ENGLISH;
+    private Locale locale = Locale.GERMAN;
 
 
     public static ConfigManager getInstance(){

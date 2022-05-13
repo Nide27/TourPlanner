@@ -82,7 +82,7 @@ public class EditTourItemViewModel {
 
     public void editTour(){
         //API AUFRUF
-        TourItem tourItem = new TourItem(id, name.get(), description.get(), from.get(), to.get(), transport.get(), 0, 0);
+        TourItem tourItem = new TourItem(id, name.get(), description.get(), from.get(), to.get(), transport.get(), 0, "");
         DAL.getInstance().getTourItemDao().update(tourItem);
         tourList.clear();
         tourList.addAll(DAL.getInstance().getTourItemDao().getAll());

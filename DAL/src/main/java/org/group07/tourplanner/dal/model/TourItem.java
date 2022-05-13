@@ -16,8 +16,8 @@ public class TourItem implements Serializable {
     private String departure;
     private String destination;
     private String transport;
-    private float distance;
-    private float estimate;
+    private double distance;
+    private String estimate;
 
     @Override
     public String toString() {

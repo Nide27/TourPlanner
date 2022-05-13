@@ -40,8 +40,8 @@ public class TourItemDao implements Dao<TourItem> {
                     rs.getString(4),
                     rs.getString(5),
                     rs.getString(6),
-                    rs.getFloat(7),
-                    rs.getFloat(8)
+                    rs.getDouble(7),
+                    rs.getString(8)
             ));
         }
 
@@ -69,8 +69,8 @@ public class TourItemDao implements Dao<TourItem> {
                                 rs.getString(4),
                                 rs.getString(5),
                                 rs.getString(6),
-                                rs.getInt(7),
-                                rs.getFloat(8)
+                                rs.getDouble(7),
+                                rs.getString(8)
             ));
         }
 
@@ -90,8 +90,8 @@ public class TourItemDao implements Dao<TourItem> {
         stmt.setString(3, tourItem.getDeparture());
         stmt.setString(4, tourItem.getDestination());
         stmt.setString(5, tourItem.getTransport());
-        stmt.setFloat(6, tourItem.getDistance());
-        stmt.setFloat(7, tourItem.getEstimate());
+        stmt.setDouble(6, tourItem.getDistance());
+        stmt.setString(7, tourItem.getEstimate());
 
         stmt.execute();
     }
@@ -109,8 +109,8 @@ public class TourItemDao implements Dao<TourItem> {
         stmt.setString(3, tourItem.getDeparture());
         stmt.setString(4, tourItem.getDestination());
         stmt.setString(5, tourItem.getTransport());
-        stmt.setFloat(6, tourItem.getDistance());
-        stmt.setFloat(7, tourItem.getEstimate());
+        stmt.setDouble(6, tourItem.getDistance());
+        stmt.setString(7, tourItem.getEstimate());
         stmt.setInt(8, tourItem.getId());
 
         stmt.execute();

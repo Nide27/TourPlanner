@@ -1,0 +1,5 @@
+{
+  "dbURL": "jdbc:postgresql://localhost:5432/tours",
+  "dbUser": "admin",
+  "dbPassword": "admin123"
+}

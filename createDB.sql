@@ -16,8 +16,8 @@ CREATE TABLE items (
                        departure VARCHAR ( 50 ) NOT NULL,
                        destination VARCHAR ( 50 ) NOT NULL,
                        transport VARCHAR ( 20 ) NOT NULL,
-                       distance FLOAT NOT NULL,
-                       estimate FLOAT NOT NULL
+                       distance double precision NOT NULL,
+                       estimate varchar NOT NULL
 );
 
 

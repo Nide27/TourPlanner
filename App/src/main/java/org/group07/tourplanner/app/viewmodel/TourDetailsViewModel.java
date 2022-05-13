@@ -1,76 +1,51 @@
 package org.group07.tourplanner.app.viewmodel;
 
 import javafx.beans.property.*;
+import javafx.embed.swing.SwingFXUtils;
+import lombok.Getter;
+import lombok.SneakyThrows;
+import org.group07.tourplanner.bl.TestThread;
 import org.group07.tourplanner.dal.model.TourItem;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.net.URL;
+
+import javafx.scene.image.Image;
+
+import javax.imageio.ImageIO;
 
 public class TourDetailsViewModel {
     private TourItem tourItemModel;
     private volatile boolean isInitValue = false;
 
+    @Getter
     private final StringProperty name = new SimpleStringProperty();
+    @Getter
     private final StringProperty description = new SimpleStringProperty();
+    @Getter
     private final StringProperty departure = new SimpleStringProperty();
+    @Getter
     private final StringProperty destination = new SimpleStringProperty();
+    @Getter
     private final StringProperty transport = new SimpleStringProperty();
-    private final FloatProperty distance = new SimpleFloatProperty();
-    private final FloatProperty estimate = new SimpleFloatProperty();
+    @Getter
+    private final DoubleProperty distance = new SimpleDoubleProperty();
+    @Getter
+    private final StringProperty estimate = new SimpleStringProperty();
+    @Getter
+    private final ObjectProperty<javafx.scene.image.Image> imageView = new SimpleObjectProperty<>();
 
     public TourDetailsViewModel() {
         name.addListener( (arg, oldVal, newVal)->updateTourModel());
     }
 
-
-
-    public String getName() {
-        return name.get();
-    }
-    public StringProperty nameProperty() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description.get();
-    }
-    public StringProperty descriptionProperty() {
-        return description;
-    }
-
-    public String getFrom() {
-        return departure.get();
-    }
-    public StringProperty fromProperty() {
-        return departure;
-    }
-
-    public String getTo() {
-        return destination.get();
-    }
-    public StringProperty toProperty() {
-        return destination;
-    }
-
-    public String getTransport() {
-        return transport.get();
-    }
-    public StringProperty transportProperty() {
-        return transport;
-    }
-
-    public double getDistance() {
-        return distance.get();
-    }
-    public FloatProperty distanceProperty() {
-        return distance;
-    }
-
-    public float getEstimate() {
-        return estimate.get();
-    }
-    public FloatProperty estimateProperty() {
-        return estimate;
-    }
-
-    public void setTourModel(TourItem tourItemModel) {
+    @SneakyThrows
+    public void setTourModel(TourItem tourItemModel){
         isInitValue = true;
         if( tourItemModel ==null ) {
             // select the first in the list
@@ -80,7 +55,7 @@ public class TourDetailsViewModel {
             destination.set("");
             transport.set("");
             distance.set(0);
-            estimate.set(0);
+            estimate.set("");
             return;
         }
         this.tourItemModel = tourItemModel;
@@ -91,6 +66,18 @@ public class TourDetailsViewModel {
         transport.setValue( tourItemModel.getTransport() );
         distance.set( tourItemModel.getDistance() );
         estimate.set( tourItemModel.getEstimate() );
+
+        TestThread testThread = new TestThread(imageView);
+        testThread.start();
+
+        /*BufferedImage img = ImageIO.read(new URL("https://www.mapquestapi.com/staticmap/v5/map?session=627e742a-004d-993a-02b4-38dc-0a7902033dd3&size=500,500@2x&key=Zo9e7MdMG26Xb55t0Fusnyo75Fage2ib"));
+        InputStream stream = new FileInputStream("/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/App/src/main/resources/static-map.jpeg");
+        Image image = new Image(stream);
+        //Image image2 = (Image)img;
+        Image img2 = SwingFXUtils.toFXImage(img, null);
+        imageView.set(img2);*/
+
+
         isInitValue = false;
     }
 

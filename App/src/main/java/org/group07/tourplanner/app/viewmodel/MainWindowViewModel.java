@@ -27,8 +27,8 @@ public class MainWindowViewModel {
     }
 
     private void selectTour(TourItem selectedTourItem) {
-        tourDetailsViewModel.setTourModel(selectedTourItem);
         tourLogsViewModel.updateTourModel(selectedTourItem);
+        tourDetailsViewModel.setTourModel(selectedTourItem);
     }
 
     private void searchTours(String searchString) {
