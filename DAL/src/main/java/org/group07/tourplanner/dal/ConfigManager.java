@@ -1,7 +1,6 @@
 package org.group07.tourplanner.dal;
 
 import lombok.Getter;
-import org.group07.tourplanner.dal.config.DbConfig;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,13 +11,7 @@ public class ConfigManager {
     private static ConfigManager instance;
 
     @Getter
-    private String dbURL = "jdbc:postgresql://localhost:5432/tours";
-    @Getter
-    private String dbUser = "admin";
-    @Getter
-    private String dbPassword = "admin123";
-    @Getter
-    private Locale locale = Locale.GERMAN;
+    private Locale locale = Locale.ENGLISH;
 
 
     public static ConfigManager getInstance(){
@@ -27,7 +20,7 @@ public class ConfigManager {
         return instance;
     }
 
-    public DbConfig loadDbConfigFromFile(String path) throws IOException {
+    public <T> T loadConfigFromFile(String path, Class<T> cls) throws IOException {
         FileReader fr = new FileReader(path);
         StringBuilder sb = new StringBuilder();
         int i;
@@ -35,6 +28,6 @@ public class ConfigManager {
         while((i = fr.read()) != -1)
             sb.append((char)i);
 
-        return Jackson.getInstance().ObjectFromJSON(sb.toString(), DbConfig.class);
+        return Jackson.getInstance().ObjectFromJSON(sb.toString(), cls);
     }
 }

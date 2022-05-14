@@ -19,6 +19,8 @@ public class DAL {
         return instance;
     }
 
+    private final String dbConfigPath = "/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/resources/org/group07/tourplanner/dal/dbconfig.json";
+
     private Connection conn;
 
     @Getter
@@ -31,7 +33,7 @@ public class DAL {
         try {
             ConfigManager configManager = ConfigManager.getInstance();
 
-            DbConfig dbConfig = ConfigManager.getInstance().loadDbConfigFromFile("/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/resources/org/group07/tourplanner/dal/dbconfig.json");
+            DbConfig dbConfig = ConfigManager.getInstance().loadConfigFromFile(dbConfigPath, DbConfig.class);
 
             conn = DriverManager.getConnection(dbConfig.getDbURL(), dbConfig.getDbUser(), dbConfig.getDbPassword());
 

@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Text?>
 <VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.group07.tourplanner.app.controller.TourDetailsController">
     <ToolBar>
@@ -15,7 +16,11 @@
                 <ImageView fx:id="imageView"/>
             </Tab>
             <Tab text="%MediaDetails_Tab_Description">
-                <TextArea fx:id="descriptionTextArea"/>
+                <VBox>
+                    <Text fx:id="descriptionText"/>
+                    <Text fx:id="distanceText"/>
+                    <Text fx:id="estimateText"/>
+                </VBox>
             </Tab>
         </TabPane>
     </SplitPane>
