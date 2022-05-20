@@ -10,6 +10,7 @@ import org.group07.tourplanner.dal.model.TourItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class TourOverviewViewModel {
 
@@ -70,5 +71,9 @@ public class TourOverviewViewModel {
             return;
 
         editTourItemViewModel.createWindow(observableTourItems, tourItem);
+
+        Optional<TourItem> editedTourItem = DAL.getInstance().getTourItemDao().get(tourItem.getId());
+
+        notifyListeners(editedTourItem.get());
     }
 }

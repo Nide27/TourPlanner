@@ -19,7 +19,8 @@ public class SearchBarViewModel {
     private final BooleanBinding isSearchDisabledBinding = Bindings.createBooleanBinding( ()->searchString.get().isEmpty() );
 
     public SearchBarViewModel() {
-        searchString.addListener( (arg, oldVal, newVal)->isSearchDisabledBinding.invalidate() );
+
+        //searchString.addListener( (arg, oldVal, newVal)->isSearchDisabledBinding.invalidate() );
     }
 
     public StringProperty searchStringProperty() {

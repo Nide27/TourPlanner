@@ -50,8 +50,7 @@
     <TextField fx:id="toField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
     <Label text="%Create_Type" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-    <TextField fx:id="transportField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
-
+    <ComboBox fx:id="transportTyp" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
     <Button fx:id="submitButton" text="Submit"
             prefWidth="100" prefHeight="40" defaultButton="true"

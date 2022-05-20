@@ -32,7 +32,7 @@ public class MainWindowViewModel {
     }
 
     private void searchTours(String searchString) {
-        /*var tours = BL.getInstance().findMatchingTours( searchString );
-        tourOverviewViewModel.setTours(tours.get());*/
+        var tours = BL.getInstance().findMatchingTours( searchString );
+        tourOverviewViewModel.setTours(tours);
     }
 }

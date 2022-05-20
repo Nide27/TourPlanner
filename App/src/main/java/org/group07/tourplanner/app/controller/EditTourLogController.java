@@ -46,6 +46,10 @@ public class EditTourLogController {
         durationHourField.textProperty().bindBidirectional(editTourLogViewModel.getDurationHourField());
         durationMinuteField.textProperty().bindBidirectional(editTourLogViewModel.getDurationMinuteField());
         ratingField.textProperty().bindBidirectional(editTourLogViewModel.getRatingField());
+
+
+        datePicker.setDisable(true);
+        datePicker.setOpacity(1);
     }
 
     public EditTourLogController(EditTourLogViewModel editTourLogViewModel) {

@@ -14,6 +14,8 @@
     </Menu>
     <Menu text="%Menu_Options">
         <MenuItem mnemonicParsing="false" text="%Menu_Options_Settings"/>
+        <MenuItem text="%PDF_TOURREPORT" onAction="#onMenuTourReportClicked"/>
+        <MenuItem text="%PDF_SUMMARIZEDREPORT" onAction="#onMenuSummarizedReportClicked"/>
     </Menu>
     <Menu text="%Menu_Help">
         <MenuItem text="%Menu_Help_About" onAction="#onMenuHelpAboutClicked"/>

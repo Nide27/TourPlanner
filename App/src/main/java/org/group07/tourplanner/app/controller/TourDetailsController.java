@@ -20,6 +20,10 @@ public class TourDetailsController {
     private Text distanceText;
     @FXML
     private Text estimateText;
+    @FXML
+    private Text popularityText;
+    @FXML
+    private Text childFriendlinessText;
 
     @Getter
     private final TourDetailsViewModel tourDetailsViewModel;
@@ -34,10 +38,10 @@ public class TourDetailsController {
         nameTextField.textProperty().bindBidirectional(tourDetailsViewModel.getName());
         //descriptionTextArea.textProperty().bindBidirectional(tourDetailsViewModel.getDescription());
         imageView.imageProperty().bindBidirectional(tourDetailsViewModel.getImageView());
-        System.out.println(imageView.getParent());
         descriptionText.textProperty().bindBidirectional(tourDetailsViewModel.getDescription());
         distanceText.textProperty().bindBidirectional(tourDetailsViewModel.getDistance());
         estimateText.textProperty().bindBidirectional(tourDetailsViewModel.getEstimate());
-
+        popularityText.textProperty().bindBidirectional(tourDetailsViewModel.getPopularity());
+        childFriendlinessText.textProperty().bindBidirectional(tourDetailsViewModel.getChildFriendliness());
     }
 }

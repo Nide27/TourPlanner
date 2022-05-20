@@ -33,7 +33,7 @@ public class EditTourItemViewModel {
     @Getter
     private final StringProperty transport = new SimpleStringProperty();
 
-    private Stage newWindow = new Stage();
+    private Stage newWindow;
     private Window main = null;
     private ObservableList<TourItem> tourList;
     private int id;
@@ -69,6 +69,7 @@ public class EditTourItemViewModel {
             newWindow.close();
         }
 
+        newWindow = new Stage();
         newWindow.setTitle("Edit Tour");
         newWindow.setScene(secondScene);
         newWindow.initModality(Modality.APPLICATION_MODAL);
@@ -77,17 +78,16 @@ public class EditTourItemViewModel {
 
         newWindow.initOwner(main);*/
 
-        newWindow.show();
+        newWindow.showAndWait();
     }
 
     public void editTour(){
-        //API AUFRUF
         TourItem tourItem = new TourItem(id, name.get(), description.get(), from.get(), to.get(), transport.get(), 0, "");
         DAL.getInstance().getTourItemDao().update(tourItem);
         tourList.clear();
         tourList.addAll(DAL.getInstance().getTourItemDao().getAll());
         newWindow.close();
         ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", Locale.ENGLISH);
-        AlertHelper.showAlert(Alert.AlertType.INFORMATION, main, res.getString("INFORMATION_SUCCESS"), res.getString("INFORMATION_UPDATED"));
+        AlertHelper.showAlert(Alert.AlertType.INFORMATION, main, res.getString("INFORMATION_SUCCESS"), res.getString("INFORMATION_TOUR_UPDATED"));
     }
 }

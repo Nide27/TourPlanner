@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import org.group07.tourplanner.app.helper.AlertHelper;
@@ -14,6 +15,8 @@ import java.util.ResourceBundle;
 
 public class CreateTourItemController {
     @FXML
+    private ComboBox<String> transportTyp;
+    @FXML
     private Button submitButton;
     @FXML
     private TextField nameField;
@@ -23,8 +26,6 @@ public class CreateTourItemController {
     private TextField fromField;
     @FXML
     private TextField toField;
-    @FXML
-    private TextField transportField;
 
     private final CreateTourItemViewModel createTourItemViewModel;
 
@@ -34,11 +35,12 @@ public class CreateTourItemController {
 
     @FXML
     void initialize() {
+        transportTyp.getItems().setAll("Cycling", "Driving", "Walking");
         nameField.textProperty().bindBidirectional(createTourItemViewModel.getName());
         descriptionField.textProperty().bindBidirectional(createTourItemViewModel.getDescription());
         fromField.textProperty().bindBidirectional(createTourItemViewModel.getFrom());
         toField.textProperty().bindBidirectional(createTourItemViewModel.getTo());
-        transportField.textProperty().bindBidirectional(createTourItemViewModel.getTransport());
+        transportTyp.valueProperty().bindBidirectional(createTourItemViewModel.getTransportType());
     }
 
     @FXML
@@ -61,7 +63,7 @@ public class CreateTourItemController {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_TO"));
             return;
         }
-        if(transportField.getText() == null || transportField.getText().isEmpty()){
+        if(transportTyp.getValue() == null || transportTyp.getValue().isEmpty()){
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_TRANSPORT"));
             return;
         }

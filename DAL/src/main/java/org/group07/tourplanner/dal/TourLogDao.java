@@ -70,16 +70,16 @@ public class TourLogDao implements Dao<TourLog> {
     @Override
     public void update(TourLog tourLog) {
 
-        String sql = "UPDATE logs SET date = ?, comment = ?, difficulty = ?, duration = ?, rating = ? WHERE tourid = ?";
+        String sql = "UPDATE logs SET comment = ?, difficulty = ?, duration = ?, rating = ? WHERE tourid = ? AND date = ?";
 
         PreparedStatement stmt = conn.prepareStatement(sql);
 
-        stmt.setObject(1, tourLog.getDate());
-        stmt.setString(2, tourLog.getComment());
-        stmt.setInt(3, tourLog.getDifficulty());
-        stmt.setInt(4, tourLog.getDuration());
-        stmt.setInt(5, tourLog.getRating());
-        stmt.setInt(6, tourLog.getTourid());
+        stmt.setString(1, tourLog.getComment());
+        stmt.setInt(2, tourLog.getDifficulty());
+        stmt.setInt(3, tourLog.getDuration());
+        stmt.setInt(4, tourLog.getRating());
+        stmt.setInt(5, tourLog.getTourid());
+        stmt.setObject(6, tourLog.getDate());
 
         stmt.execute();
     }

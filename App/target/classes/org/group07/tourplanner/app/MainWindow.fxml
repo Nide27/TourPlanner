@@ -5,7 +5,7 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="org.group07.tourplanner.app.controller.MainWindowController"
-      prefHeight="800.0" prefWidth="1000.0">
+      prefHeight="900.0" prefWidth="1100.0">
 
     <fx:include fx:id="topBar" source="TopBar.fxml"/>
     <fx:include fx:id="searchBar" source="SearchBar.fxml"/>

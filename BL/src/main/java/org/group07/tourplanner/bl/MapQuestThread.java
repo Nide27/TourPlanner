@@ -103,7 +103,7 @@ public class MapQuestThread extends Thread {
             tourItem.setDistance(dist);
             tourItem.setEstimate(est);
 
-            distance.setValue(res.getString("DETAIL_DISTANCE") + dist);
+            distance.setValue(res.getString("DETAIL_DISTANCE") + dist + " km");
             estimate.setValue(res.getString("DETAIL_ESTIMATE") + est);
 
             String sessionID = node.get("sessionId").asText();

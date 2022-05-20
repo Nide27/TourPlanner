@@ -24,7 +24,7 @@
         </ColumnConstraints>
     </columnConstraints>
 
-    <Label text="%Log_Head" GridPane.columnIndex="0"
+    <Label text="%Edit_Log_Head" GridPane.columnIndex="0"
            GridPane.rowIndex="0" GridPane.columnSpan="2"
            GridPane.rowSpan="1" GridPane.halignment="CENTER" >
         <font>
@@ -55,7 +55,7 @@
     <Label text="%Log_Rating" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
     <TextField fx:id="ratingField" prefHeight="40" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
 
-    <Button fx:id="submitButton" text="Submit"
+    <Button fx:id="submitButton" text="Update"
             prefWidth="100" prefHeight="40" defaultButton="true"
             GridPane.columnIndex="0" GridPane.rowIndex="7"
             GridPane.columnSpan="2" GridPane.rowSpan="1"

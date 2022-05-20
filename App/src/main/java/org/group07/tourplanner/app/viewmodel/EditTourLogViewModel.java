@@ -7,20 +7,26 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.group07.tourplanner.app.FXMLDependencyInjection;
+import org.group07.tourplanner.app.helper.AlertHelper;
 import org.group07.tourplanner.dal.ConfigManager;
 import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.model.TourLog;
 
 import java.time.LocalDate;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class EditTourLogViewModel {
 
     private Stage newStage;
+    private Window main = null;
     private ObservableList<TourLog> tourLogsList;
 
     private int tourid;
@@ -78,5 +84,7 @@ public class EditTourLogViewModel {
         tourLogsList.clear();
         tourLogsList.addAll(DAL.getInstance().getTourLogDao().getAllById(tourid));
         newStage.close();
+        ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", Locale.ENGLISH);
+        AlertHelper.showAlert(Alert.AlertType.INFORMATION, main, res.getString("INFORMATION_SUCCESS"), res.getString("INFORMATION_LOG_UPDATED"));
     }
 }

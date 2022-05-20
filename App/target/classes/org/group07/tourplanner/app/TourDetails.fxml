@@ -20,6 +20,8 @@
                     <Text fx:id="descriptionText"/>
                     <Text fx:id="distanceText"/>
                     <Text fx:id="estimateText"/>
+                    <Text fx:id="popularityText"/>
+                    <Text fx:id="childFriendlinessText"/>
                 </VBox>
             </Tab>
         </TabPane>
