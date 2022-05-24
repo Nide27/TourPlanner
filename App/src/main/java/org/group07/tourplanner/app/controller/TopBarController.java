@@ -62,11 +62,11 @@ public class TopBarController implements Initializable {
     }
 
     public void onMenuTourReportClicked(ActionEvent actionEvent){
-        topBarViewModel.createSummarizedReport();
+        topBarViewModel.createTourReport();
     }
 
     public void onMenuSummarizedReportClicked(ActionEvent actionEvent){
-
+        topBarViewModel.createSummarizedReport();
     }
 
 

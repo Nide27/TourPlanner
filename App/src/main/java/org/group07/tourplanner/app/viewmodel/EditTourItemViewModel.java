@@ -51,7 +51,7 @@ public class EditTourItemViewModel {
         this.tourList = list;
         Locale currentLocale = Locale.getDefault();
         String country = System.getProperty("user.country");
-        System.out.println(country);
+        //System.out.println(country);
         //ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", Locale.getDefault());
 
         Parent root = FXMLDependencyInjection.load("EditTourItem.fxml", ConfigManager.getInstance().getLocale());

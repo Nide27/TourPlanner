@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <h3 style="text-align: center; color: green">
+            <span th:text="${title}"></span>
+        </h3>
 
-</body>
+        <div th:if="${list.isEmpty()}">
+            <h4>No Logs!</h4>
+        </div>
+        <div th:unless="${list.isEmpty()}" th:each="entry : ${list}">
+            <h5 th:text="'Tour Name: ' + ${entry.getName()}"></h5>
+            <span th:text="'Average Time: ' + ${entry.getAvgTime()}"></span>
+            <span th:text="'Average Difficulty: ' + ${entry.getAvgDifficulty()}"></span>
+            <span th:text="'Average Rating: ' + ${entry.getAvgRating()}"></span>
+        </div>
+    </body>
 </html>

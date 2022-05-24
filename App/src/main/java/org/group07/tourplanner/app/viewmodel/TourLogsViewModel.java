@@ -29,7 +29,7 @@ public class TourLogsViewModel {
     private final CreateTourLogViewModel createTourLogViewModel;
     private final EditTourLogViewModel editTourLogViewModel;
 
-    private TourItem tourItemModel;
+    private TourItem tourItem;
     private List<TourLog> tourLogs = new ArrayList<>();
     private volatile boolean isInitValue = false;
 
@@ -61,11 +61,11 @@ public class TourLogsViewModel {
         }
     }
 
-    public void updateTourModel(TourItem tourItemModel){
+    public void setTourModel(TourItem tourItemModel){
         if(tourItemModel == null)
             return;
 
-        this.tourItemModel = tourItemModel;
+        this.tourItem = tourItemModel;
 
         setLogs(DAL.getInstance().getTourLogDao().getAllById(tourItemModel.getId()));
 
@@ -81,10 +81,10 @@ public class TourLogsViewModel {
     }
 
     public void createTourLog(){
-        if(tourItemModel == null)
+        if(tourItem == null)
             return;
 
-        this.createTourLogViewModel.createWindow(this.tourLogsList, tourItemModel);
+        this.createTourLogViewModel.createWindow(this.tourLogsList, tourItem);
     }
 
     public void deleteTourLog(TourLog tourLog){

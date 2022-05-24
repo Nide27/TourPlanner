@@ -15,6 +15,7 @@ import org.group07.tourplanner.dal.model.TourItem;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -64,6 +65,7 @@ public class MapQuestThread extends Thread {
         this.imgProperty = imgProperty;
         InputStream stream = new FileInputStream("/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/App/src/main/resources/activity_indicator.gif");
         Image image =  new Image(stream, 200, 200, false, false);
+
         imgProperty.set(image);
     }
 
@@ -116,6 +118,7 @@ public class MapQuestThread extends Thread {
                         + "&size=380,170@2x";
 
             BufferedImage bufImg = ImageIO.read(new URL(requestMap));
+            ImageIO.write(bufImg, "jpg", new File("BL/src/main/resources/org/group07/tourplanner/bl/temp.jpg"));
             Image img = SwingFXUtils.toFXImage(bufImg, null);
             imgProperty.set(img);
 
