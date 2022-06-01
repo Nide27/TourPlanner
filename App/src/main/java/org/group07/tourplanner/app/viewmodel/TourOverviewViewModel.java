@@ -1,16 +1,17 @@
 package org.group07.tourplanner.app.viewmodel;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import lombok.Getter;
+
 import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.model.TourItem;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public class TourOverviewViewModel {
 
@@ -51,11 +52,8 @@ public class TourOverviewViewModel {
         observableTourItems.addAll(tourItems);
     }
 
-    public void addNewTour() {
-
-        //DAL.getInstance().getTourItemDao().create(tourItem);
+    public void createTour() {
         createTourItemViewModel.createWindow(observableTourItems);
-        //observableMediaItems.add(tour);
     }
 
     public void deleteTour(TourItem tourItem) {

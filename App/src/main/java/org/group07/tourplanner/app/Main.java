@@ -4,19 +4,22 @@ import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.group07.tourplanner.app.viewmodel.TourOverviewViewModel;
+import org.group07.tourplanner.bl.PdfGenerator;
 import org.group07.tourplanner.dal.ConfigManager;
 
 import java.io.IOException;
 
 public class Main extends Application {
+
+    private static final Logger logger = LogManager.getLogger(Main.class);
+
     @Override
     public void start(Stage stage) throws IOException {
         Parent root = FXMLDependencyInjection.load("MainWindow.fxml", ConfigManager.getInstance().getLocale());
-        /*FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 400, 300);*/
         Scene scene = new Scene(root);
-/*        stage.setMinWidth(400);
-        stage.setMinHeight(300);*/
         stage.setTitle("TourPlanner");
         stage.setScene(scene);
         stage.show();

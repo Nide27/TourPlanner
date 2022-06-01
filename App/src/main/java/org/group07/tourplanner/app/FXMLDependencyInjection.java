@@ -18,7 +18,7 @@ public class FXMLDependencyInjection {
 
     public static FXMLLoader getLoader(String location, Locale locale){
         return new FXMLLoader(
-                FXMLDependencyInjection.class.getResource("/org/group07/tourplanner/app/" + location),
+                FXMLDependencyInjection.class.getResource("/org/group07/tourplanner/app/fxml/" + location),
                 ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", locale),
                 new JavaFXBuilderFactory(),
                 controllerClass-> ControllerFactory.getInstance().create(controllerClass)

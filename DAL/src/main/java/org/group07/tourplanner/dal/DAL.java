@@ -24,7 +24,7 @@ public class DAL {
     private Connection conn;
 
     @Getter
-    private Dao<TourItem> tourItemDao;
+    private TourItemDao tourItemDao;
     @Getter
     private TourLogDao tourLogDao;
 

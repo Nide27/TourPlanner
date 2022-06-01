@@ -1,5 +1,7 @@
 package org.group07.tourplanner.app.viewmodel;
 
+import java.time.LocalDate;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -10,26 +12,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
+
 import lombok.Getter;
 import lombok.SneakyThrows;
+
 import org.group07.tourplanner.app.FXMLDependencyInjection;
 import org.group07.tourplanner.app.helper.AlertHelper;
+import org.group07.tourplanner.app.helper.ResourceManager;
 import org.group07.tourplanner.dal.ConfigManager;
 import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.model.TourLog;
 
-import java.time.LocalDate;
-import java.util.Locale;
-import java.util.ResourceBundle;
-
 public class EditTourLogViewModel {
-
-    private Stage newStage;
-    private Window main = null;
-    private ObservableList<TourLog> tourLogsList;
-
-    private int tourid;
 
     @Getter
     private final ObjectProperty<LocalDate> datePicker = new SimpleObjectProperty<>();
@@ -43,6 +37,17 @@ public class EditTourLogViewModel {
     private final StringProperty durationMinuteField = new SimpleStringProperty();
     @Getter
     private final StringProperty ratingField = new SimpleStringProperty();
+
+    private Stage stage;
+    private ObservableList<TourLog> tourLogsList;
+
+    private int tourid;
+
+    private final ResourceManager rm;
+
+    public EditTourLogViewModel(){
+        this.rm = ResourceManager.getInstance();
+    }
 
     @SneakyThrows
     public void createWindow(ObservableList<TourLog> list, TourLog tourLog){
@@ -59,17 +64,15 @@ public class EditTourLogViewModel {
         this.tourLogsList = list;
 
         Parent root = FXMLDependencyInjection.load("EditTourLog.fxml", ConfigManager.getInstance().getLocale());
-        //LocalThread oder Singelton und dort alles speichern
-        //Alle konfigurations paramter dort ablegen und dann Singelton verwenden
 
-        Scene newScene = new Scene(root);
+        Scene scene = new Scene(root);
 
-        newStage = new Stage();
-        newStage.setTitle("Edit TourLog");
-        newStage.setScene(newScene);
-        newStage.initModality(Modality.APPLICATION_MODAL);
+        stage = new Stage();
+        stage.setTitle("Edit TourLog");
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
 
-        newStage.showAndWait();
+        stage.showAndWait();
     }
 
     public void editTourLog(){
@@ -83,8 +86,9 @@ public class EditTourLogViewModel {
 
         tourLogsList.clear();
         tourLogsList.addAll(DAL.getInstance().getTourLogDao().getAllById(tourid));
-        newStage.close();
-        ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", Locale.ENGLISH);
-        AlertHelper.showAlert(Alert.AlertType.INFORMATION, main, res.getString("INFORMATION_SUCCESS"), res.getString("INFORMATION_LOG_UPDATED"));
+
+        stage.close();
+
+        AlertHelper.showAlert(Alert.AlertType.INFORMATION, rm.load("INFORMATION_SUCCESS"), rm.load("INFORMATION_LOG_UPDATED"));
     }
 }

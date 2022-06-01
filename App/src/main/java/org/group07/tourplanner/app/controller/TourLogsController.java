@@ -1,13 +1,10 @@
 package org.group07.tourplanner.app.controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import lombok.Getter;
+
 import org.group07.tourplanner.app.viewmodel.TourLogsViewModel;
 import org.group07.tourplanner.dal.model.TourLog;
 
@@ -15,21 +12,6 @@ public class TourLogsController {
 
     @FXML
     private TableView<TourLog> tourLogsTable;
-
-    @FXML
-    private TableColumn dateColumn;
-
-    @FXML
-    private TableColumn commentColumn;
-
-    @FXML
-    private TableColumn difficultyColumn;
-
-    @FXML
-    private TableColumn durationColumn;
-
-    @FXML
-    private TableColumn ratingColumn;
 
     private final TourLogsViewModel tourLogsViewModel;
 
@@ -45,17 +27,17 @@ public class TourLogsController {
     }
 
     @FXML
-    private void onButtonAdd(ActionEvent actionEvent){
+    private void onAdd(ActionEvent actionEvent){
         this.tourLogsViewModel.createTourLog();
     }
 
     @FXML
-    private void onButtonDel(ActionEvent actionEvent){
+    private void onDelete(ActionEvent actionEvent){
         tourLogsViewModel.deleteTourLog(tourLogsTable.getSelectionModel().getSelectedItem());
     }
 
     @FXML
-    private void onButtonEdit(ActionEvent actionEvent){
+    private void onEdit(ActionEvent actionEvent){
         if(tourLogsTable.getSelectionModel().getSelectedItem() == null)
             return;
 

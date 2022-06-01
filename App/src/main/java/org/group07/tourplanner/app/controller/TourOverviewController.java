@@ -1,9 +1,11 @@
 package org.group07.tourplanner.app.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
+
 import lombok.Getter;
+
 import org.group07.tourplanner.app.viewmodel.TourOverviewViewModel;
 import org.group07.tourplanner.dal.model.TourItem;
 
@@ -25,17 +27,17 @@ public class TourOverviewController {
     }
 
     @FXML
-    private void onButtonAdd(ActionEvent actionEvent) {
-        tourOverviewViewModel.addNewTour();
+    private void onAdd(ActionEvent actionEvent) {
+        tourOverviewViewModel.createTour();
     }
 
     @FXML
-    private void onButtonRemove(ActionEvent actionEvent) {
+    private void onRemove(ActionEvent actionEvent) {
         tourOverviewViewModel.deleteTour(tourItemList.getSelectionModel().getSelectedItem());
     }
 
     @FXML
-    private void onButtonEdit(ActionEvent actionEvent){
+    private void onEdit(ActionEvent actionEvent){
         if(tourItemList.getSelectionModel().getSelectedItem() == null)
             return;
 

@@ -1,5 +1,7 @@
 package org.group07.tourplanner.app.viewmodel;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
@@ -8,17 +10,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
+
 import lombok.Getter;
 import lombok.SneakyThrows;
+
 import org.group07.tourplanner.app.FXMLDependencyInjection;
 import org.group07.tourplanner.app.helper.AlertHelper;
+import org.group07.tourplanner.app.helper.ResourceManager;
 import org.group07.tourplanner.dal.ConfigManager;
 import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.model.TourItem;
-
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class EditTourItemViewModel {
 
@@ -31,12 +32,17 @@ public class EditTourItemViewModel {
     @Getter
     private final StringProperty to = new SimpleStringProperty();
     @Getter
-    private final StringProperty transport = new SimpleStringProperty();
+    private final ObjectProperty<String> transportType = new SimpleObjectProperty<>();
 
-    private Stage newWindow;
-    private Window main = null;
+    private Stage stage;
     private ObservableList<TourItem> tourList;
     private int id;
+
+    private final ResourceManager rm;
+
+    public EditTourItemViewModel(){
+        this.rm = ResourceManager.getInstance();
+    }
 
     @SneakyThrows
     public void createWindow(ObservableList<TourItem> list, TourItem tourItem){
@@ -46,48 +52,57 @@ public class EditTourItemViewModel {
         description.set(tourItem.getDescription());
         from.set(tourItem.getDeparture());
         to.set(tourItem.getDestination());
-        transport.set(tourItem.getTransport());
+
+        switch (tourItem.getTransport()){
+            case "bicycle":
+                transportType.set("Cycling"); break;
+            case "fastest":
+                transportType.set("Driving"); break;
+            case "pedestrian":
+                transportType.set("Walking"); break;
+        }
 
         this.tourList = list;
-        Locale currentLocale = Locale.getDefault();
-        String country = System.getProperty("user.country");
-        //System.out.println(country);
-        //ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", Locale.getDefault());
 
         Parent root = FXMLDependencyInjection.load("EditTourItem.fxml", ConfigManager.getInstance().getLocale());
 
-        //Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/group07/tourplanner/app/CreateTourItem.fxml")));
-        //Label secondLabel = new Label("I'm a Label on new Window");
+        Scene scene = new Scene(root);
 
-        //StackPane secondaryLayout = new StackPane(root);
-        //secondaryLayout.getChildren().add(secondLabel);
-
-        Scene secondScene = new Scene(root);
-
-        // New window (Stage)
-        if (newWindow != null){
-            newWindow.close();
-        }
-
-        newWindow = new Stage();
-        newWindow.setTitle("Edit Tour");
-        newWindow.setScene(secondScene);
-        newWindow.initModality(Modality.APPLICATION_MODAL);
-/*
-        newWindow.initModality(Modality.WINDOW_MODAL);
-
-        newWindow.initOwner(main);*/
-
-        newWindow.showAndWait();
+        stage = new Stage();
+        stage.setTitle("Edit Tour");
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
     public void editTour(){
-        TourItem tourItem = new TourItem(id, name.get(), description.get(), from.get(), to.get(), transport.get(), 0, "");
+
+        String transport;
+
+        switch (transportType.get()){
+            case "Cycling":
+                transport = "bicycle"; break;
+            case "Driving":
+                transport = "fastest"; break;
+            case "Walking":
+                transport = "pedestrian"; break;
+            default: transport = "";
+        }
+
+        TourItem tourItem = new TourItem(id, name.get(), description.get(), from.get(), to.get(), transport, 0, "00:00:00");
         DAL.getInstance().getTourItemDao().update(tourItem);
+
         tourList.clear();
         tourList.addAll(DAL.getInstance().getTourItemDao().getAll());
-        newWindow.close();
-        ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", Locale.ENGLISH);
-        AlertHelper.showAlert(Alert.AlertType.INFORMATION, main, res.getString("INFORMATION_SUCCESS"), res.getString("INFORMATION_TOUR_UPDATED"));
+
+        name.setValue("");
+        description.setValue("");
+        from.setValue("");
+        to.setValue("");
+        transportType.setValue("");
+
+        stage.close();
+
+        AlertHelper.showAlert(Alert.AlertType.INFORMATION, rm.load("INFORMATION_SUCCESS"), rm.load("INFORMATION_TOUR_UPDATED"));
     }
 }

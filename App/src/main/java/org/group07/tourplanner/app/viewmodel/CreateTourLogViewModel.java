@@ -1,5 +1,9 @@
 package org.group07.tourplanner.app.viewmodel;
 
+import java.time.LocalDate;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,8 +15,10 @@ import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+
 import lombok.Getter;
 import lombok.SneakyThrows;
+
 import org.group07.tourplanner.app.FXMLDependencyInjection;
 import org.group07.tourplanner.app.helper.AlertHelper;
 import org.group07.tourplanner.dal.ConfigManager;
@@ -20,15 +26,9 @@ import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.model.TourItem;
 import org.group07.tourplanner.dal.model.TourLog;
 
-import java.time.LocalDate;
-import java.util.Locale;
-import java.util.ResourceBundle;
-
-
 public class CreateTourLogViewModel {
 
-    private Stage newStage;
-    private Window main = null;
+    private Stage stage;
     private ObservableList<TourLog> tourLogsList;
 
     private int tourid;
@@ -53,15 +53,15 @@ public class CreateTourLogViewModel {
 
         Parent root = FXMLDependencyInjection.load("CreateTourLog.fxml", ConfigManager.getInstance().getLocale());
 
-        Scene newScene = new Scene(root);
+        Scene scene = new Scene(root);
 
-        newStage = new Stage();
-        newStage.setTitle("Create TourLog");
-        newStage.setScene(newScene);
+        stage = new Stage();
+        stage.setTitle("Create TourLog");
+        stage.setScene(scene);
 
-        newStage.initModality(Modality.APPLICATION_MODAL);
+        stage.initModality(Modality.APPLICATION_MODAL);
 
-        newStage.showAndWait();
+        stage.showAndWait();
     }
 
     public void createTourLog(){
@@ -83,9 +83,9 @@ public class CreateTourLogViewModel {
         durationMinuteField.setValue("");
         ratingField.setValue("");
 
-        newStage.close();
+        stage.close();
 
         ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", Locale.ENGLISH);
-        AlertHelper.showAlert(Alert.AlertType.INFORMATION, main, res.getString("INFORMATION_SUCCESS"), res.getString("INFORMATION_LOG_CREATED"));
+        AlertHelper.showAlert(Alert.AlertType.INFORMATION, res.getString("INFORMATION_SUCCESS"), res.getString("INFORMATION_LOG_CREATED"));
     }
 }

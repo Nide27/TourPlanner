@@ -4,6 +4,8 @@ import org.group07.tourplanner.app.viewmodel.*;
 
 public class ControllerFactory {
 
+    private static ControllerFactory instance = new ControllerFactory();
+
     private final MainWindowViewModel mainWindowViewModel;
     private final TopBarViewModel topBarViewModel;
     private final SearchBarViewModel searchBarViewModel;
@@ -15,17 +17,21 @@ public class ControllerFactory {
     private final EditTourLogViewModel editTourLogViewModel;
     private final CreateTourLogViewModel createTourLogViewModel;
 
+    public static ControllerFactory getInstance() {
+        return instance;
+    }
+
     private ControllerFactory() {
-        topBarViewModel = new TopBarViewModel();
-        searchBarViewModel = new SearchBarViewModel();
         createTourItemViewModel = new CreateTourItemViewModel();
         createTourLogViewModel = new CreateTourLogViewModel();
         editTourItemViewModel = new EditTourItemViewModel();
         editTourLogViewModel = new EditTourLogViewModel();
-        tourOverviewViewModel = new TourOverviewViewModel(createTourItemViewModel, editTourItemViewModel);
+        searchBarViewModel = new SearchBarViewModel();
         tourDetailsViewModel = new TourDetailsViewModel();
         tourLogsViewModel = new TourLogsViewModel(createTourLogViewModel, editTourLogViewModel);
-        mainWindowViewModel = new MainWindowViewModel(topBarViewModel, searchBarViewModel, tourDetailsViewModel, tourOverviewViewModel, tourLogsViewModel, createTourItemViewModel, createTourLogViewModel);
+        tourOverviewViewModel = new TourOverviewViewModel(createTourItemViewModel, editTourItemViewModel);
+        topBarViewModel = new TopBarViewModel(tourOverviewViewModel);
+        mainWindowViewModel = new MainWindowViewModel(topBarViewModel, searchBarViewModel, tourDetailsViewModel, tourOverviewViewModel, tourLogsViewModel);
     }
 
     public Object create(Class<?> controllerClass) {
@@ -70,10 +76,5 @@ public class ControllerFactory {
         }
 
         throw new IllegalArgumentException("Unknown controller class: " + controllerClass);
-    }
-
-    private static ControllerFactory instance = new ControllerFactory();
-    public static ControllerFactory getInstance() {
-        return instance;
     }
 }

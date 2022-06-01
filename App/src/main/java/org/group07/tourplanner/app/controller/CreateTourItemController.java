@@ -1,13 +1,15 @@
 package org.group07.tourplanner.app.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
+
 import org.group07.tourplanner.app.helper.AlertHelper;
+import org.group07.tourplanner.app.helper.ResourceManager;
 import org.group07.tourplanner.app.viewmodel.CreateTourItemViewModel;
 import org.group07.tourplanner.dal.ConfigManager;
 
@@ -29,8 +31,11 @@ public class CreateTourItemController {
 
     private final CreateTourItemViewModel createTourItemViewModel;
 
+    private final ResourceManager rm;
+
     public CreateTourItemController(CreateTourItemViewModel createTourItemViewModel) {
         this.createTourItemViewModel = createTourItemViewModel;
+        this.rm = ResourceManager.getInstance();
     }
 
     @FXML
@@ -45,26 +50,24 @@ public class CreateTourItemController {
 
     @FXML
     private void addTour(ActionEvent actionEvent) {
-        ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", ConfigManager.getInstance().getLocale());
-        Window owner = submitButton.getScene().getWindow();
         if(nameField.getText() == null || nameField.getText().isEmpty()){
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_NAME"));
+            AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ERROR_FORM"), rm.load("ERROR_NAME"));
             return;
         }
         if(descriptionField.getText() == null || descriptionField.getText().isEmpty()){
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_DESCRIPTION"));
+            AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ERROR_FORM"), rm.load("ERROR_DESCRIPTION"));
             return;
         }
         if(fromField.getText() == null || fromField.getText().isEmpty()){
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_FROM"));
+            AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ERROR_FORM"), rm.load("ERROR_FROM"));
             return;
         }
         if(toField.getText() == null || toField.getText().isEmpty()){
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_TO"));
+            AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ERROR_FORM"), rm.load("ERROR_TO"));
             return;
         }
         if(transportTyp.getValue() == null || transportTyp.getValue().isEmpty()){
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, res.getString("ERROR_FORM"), res.getString("ERROR_TRANSPORT"));
+            AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ERROR_FORM"), rm.load("ERROR_TRANSPORT"));
             return;
         }
 

@@ -1,7 +1,5 @@
 package org.group07.tourplanner.app.viewmodel;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -16,27 +14,15 @@ public class SearchBarViewModel {
     private List<SearchListener> listeners = new ArrayList<>();
 
     private final StringProperty searchString = new SimpleStringProperty("");
-    private final BooleanBinding isSearchDisabledBinding = Bindings.createBooleanBinding( ()->searchString.get().isEmpty() );
 
-    public SearchBarViewModel() {
-
-        //searchString.addListener( (arg, oldVal, newVal)->isSearchDisabledBinding.invalidate() );
-    }
+    public SearchBarViewModel() {  }
 
     public StringProperty searchStringProperty() {
         return searchString;
     }
 
-    public BooleanBinding searchDisabledBinding() {
-        return isSearchDisabledBinding;
-    }
-
     public void addSearchListener(SearchListener listener) {
         listeners.add(listener);
-    }
-
-    public void removeSearchListener(SearchListener listener) {
-        listeners.remove(listener);
     }
 
     public void doSearch() {

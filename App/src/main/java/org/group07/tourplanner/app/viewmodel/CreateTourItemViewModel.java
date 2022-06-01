@@ -1,7 +1,5 @@
 package org.group07.tourplanner.app.viewmodel;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,25 +10,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
+
 import lombok.Getter;
 import lombok.SneakyThrows;
+
 import org.group07.tourplanner.app.FXMLDependencyInjection;
 import org.group07.tourplanner.app.helper.AlertHelper;
+import org.group07.tourplanner.app.helper.ResourceManager;
 import org.group07.tourplanner.dal.ConfigManager;
 import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.model.TourItem;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class CreateTourItemViewModel {
 
@@ -45,9 +34,14 @@ public class CreateTourItemViewModel {
     @Getter
     private final ObjectProperty<String> transportType = new SimpleObjectProperty<>();
 
-    private Stage newStage;
-    private Window main = null;
+    private final ResourceManager rm;
+
+    private Stage stage;
     private ObservableList<TourItem> tourList;
+
+    public CreateTourItemViewModel(){
+        this.rm = ResourceManager.getInstance();
+    }
 
     @SneakyThrows
     public void createWindow(ObservableList<TourItem> list){
@@ -55,59 +49,18 @@ public class CreateTourItemViewModel {
         this.tourList = list;
         Parent root = FXMLDependencyInjection.load("CreateTourItem.fxml", ConfigManager.getInstance().getLocale());
 
-        //Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/org/group07/tourplanner/app/CreateTourItem.fxml")));
-        //Label secondLabel = new Label("I'm a Label on new Window");
+        Scene scene = new Scene(root);
 
-        //StackPane secondaryLayout = new StackPane(root);
-        //secondaryLayout.getChildren().add(secondLabel);
-
-        Scene newScene = new Scene(root);
-        newStage = new Stage();
-
-        // New stage
-
-        newStage.setTitle("Create Tour");
-        newStage.setScene(newScene);
-
-        //newWindow.initModality(Modality.WINDOW_MODAL);
-
-        //newWindow.initOwner(main);
-        newStage.initModality(Modality.APPLICATION_MODAL);
-
-        newStage.showAndWait();
+        stage = new Stage();
+        stage.setTitle("Create Tour");
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
-
     public void createTour(){
-        HttpClient client;
-        ObjectMapper mapper;
 
-        client = HttpClient.newHttpClient();
-
-        try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    //"http://www.mapquestapi.com/directions/v2/route?key=Zo9e7MdMG26Xb55t0Fusnyo75Fage2ib&from=Wien,schwedenplatz&to=Wien,karlsplatz&routeType=bicycle")
-                    .uri(URI.create("https://www.mapquestapi.com/staticmap/v5/map?session=627e6459-0048-993a-02b4-3827-12c43d482d1f&size=500,500@2x&key=Zo9e7MdMG26Xb55t0Fusnyo75Fage2ib&routeType=pedestrian"))
-                    .header("Content-Type", "image/jpeg")
-                    .GET()
-                    .build();
-
-            HttpResponse<String> response = client.send(request,
-                    HttpResponse.BodyHandlers.ofString());
-
-            if (response.statusCode() == 200){
-                System.out.println(response.body() + "\n");
-            }else if (response.statusCode() == 400){
-                System.out.println("No User detected\n");
-            }else {
-                System.out.println("Something went wrong!\n");
-            }
-
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        String transport = "";
+        String transport;
 
         switch (transportType.get()){
             case "Cycling":
@@ -116,22 +69,23 @@ public class CreateTourItemViewModel {
                 transport = "fastest"; break;
             case "Walking":
                 transport = "pedestrian"; break;
+            default: transport = "";
         }
-
 
         TourItem tourItem = new TourItem(0, name.get(), description.get(), from.get(), to.get(), transport, 0, "00:00:00");
         DAL.getInstance().getTourItemDao().create(tourItem);
+
         tourList.clear();
         tourList.addAll(DAL.getInstance().getTourItemDao().getAll());
+
         name.setValue("");
         description.setValue("");
         from.setValue("");
         to.setValue("");
         transportType.setValue("");
-        newStage.close();
 
-        ResourceBundle res = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", Locale.ENGLISH);
-        AlertHelper.showAlert(Alert.AlertType.INFORMATION, main, res.getString("INFORMATION_SUCCESS"), res.getString("INFORMATION_TOUR_CREATED"));
+        stage.close();
+
+        AlertHelper.showAlert(Alert.AlertType.INFORMATION, rm.load("INFORMATION_SUCCESS"), rm.load("INFORMATION_TOUR_CREATED"));
     }
-
 }

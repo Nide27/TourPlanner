@@ -1,25 +1,17 @@
 package org.group07.tourplanner.app.viewmodel;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.property.FloatProperty;
-import javafx.beans.property.*;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
+import java.util.ArrayList;
+import java.util.List;
+
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
+
 import lombok.Getter;
+
 import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.model.TourItem;
 import org.group07.tourplanner.dal.model.TourLog;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 
 public class TourLogsViewModel {
 
@@ -30,17 +22,8 @@ public class TourLogsViewModel {
     private final EditTourLogViewModel editTourLogViewModel;
 
     private TourItem tourItem;
-    private List<TourLog> tourLogs = new ArrayList<>();
-    private volatile boolean isInitValue = false;
-
-    //private final ListProperty<String> dates = new ListProperty<String>();
-    private final List<StringProperty> comments = new ArrayList<>();
-    private final List<StringProperty> difficulties = new ArrayList<>();
-    private final List<FloatProperty> times = new ArrayList<>();
-    private final List<IntegerProperty> rating = new ArrayList<>();
 
     public TourLogsViewModel(CreateTourLogViewModel createTourLogViewModel, EditTourLogViewModel editTourLogViewModel){
-        //setLogs(DAL.getInstance().getTourLogDao().getAllById(tourItemModel.getId()));
         this.createTourLogViewModel = createTourLogViewModel;
         this.editTourLogViewModel = editTourLogViewModel;
     }
@@ -61,23 +44,18 @@ public class TourLogsViewModel {
         }
     }
 
-    public void setTourModel(TourItem tourItemModel){
-        if(tourItemModel == null)
+    public void setTourItem(TourItem tourItem){
+        if(tourItem == null)
             return;
 
-        this.tourItem = tourItemModel;
+        this.tourItem = tourItem;
 
-        setLogs(DAL.getInstance().getTourLogDao().getAllById(tourItemModel.getId()));
-
+        setLogs(DAL.getInstance().getTourLogDao().getAllById(tourItem.getId()));
     }
 
     private void setLogs(List<TourLog> tourLogList){
-        this.tourLogs = tourLogList;
-
         this.tourLogsList.clear();
         this.tourLogsList.addAll(tourLogList);
-
-        System.out.println(tourLogList.size());
     }
 
     public void createTourLog(){

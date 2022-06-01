@@ -1,0 +1,113 @@
+2022-06-01 19:45:58.683 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 19:45:58.684 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 19:45:58.684 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 19:45:58.684 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 19:46:30.775 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 19:46:30.776 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 19:46:30.777 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 19:46:30.777 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 19:46:35.108 [JavaFX Application Thread] ERROR org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:46:35.109 [JavaFX Application Thread] FATAL org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:46:45.310 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 19:46:45.311 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 19:46:45.311 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 19:46:45.311 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 19:46:49.510 [JavaFX Application Thread] ERROR org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:46:49.510 [JavaFX Application Thread] FATAL org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:47:55.339 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 19:47:55.340 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 19:47:55.340 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 19:47:55.340 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 19:47:59.833 [JavaFX Application Thread] ERROR org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:47:59.833 [JavaFX Application Thread] FATAL org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:50:15.460 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 19:50:15.461 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 19:50:15.462 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 19:50:15.462 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 19:50:20.051 [JavaFX Application Thread] ERROR org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:50:20.051 [JavaFX Application Thread] FATAL org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:50:47.841 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 19:50:47.842 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 19:50:47.842 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 19:50:47.842 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 19:50:51.803 [JavaFX Application Thread] ERROR org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:50:51.803 [JavaFX Application Thread] FATAL org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:51:55.633 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 19:51:55.634 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 19:51:55.634 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 19:51:55.635 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 19:51:57.879 [JavaFX Application Thread] ERROR org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:51:57.879 [JavaFX Application Thread] FATAL org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:53:14.675 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 19:53:14.676 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 19:53:14.676 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 19:53:14.676 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 19:53:18.981 [JavaFX Application Thread] ERROR org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:53:18.981 [JavaFX Application Thread] FATAL org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:53:51.379 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 19:53:51.380 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 19:53:51.380 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 19:53:51.380 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 19:54:49.078 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 19:54:49.079 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 19:54:49.079 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 19:54:49.079 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 19:54:56.321 [JavaFX Application Thread] ERROR org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:54:56.322 [JavaFX Application Thread] FATAL org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:56:52.768 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 19:56:52.769 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 19:56:52.769 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 19:56:52.769 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 19:57:01.279 [JavaFX Application Thread] ERROR org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 19:57:01.279 [JavaFX Application Thread] FATAL org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 20:07:40.689 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 20:07:40.690 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 20:07:40.690 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 20:07:40.690 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 20:10:03.252 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 20:10:03.253 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 20:10:03.253 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 20:10:03.253 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 20:11:06.793 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 20:11:06.794 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 20:11:06.794 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 20:11:06.794 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 20:26:18.666 [JavaFX Application Thread] ERROR org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 20:26:18.667 [JavaFX Application Thread] FATAL org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 20:27:10.822 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 20:27:10.823 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 20:27:10.823 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 20:27:10.823 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 20:27:13.959 [JavaFX Application Thread] DEBUG org.group07.tourplanner.app.viewmodel.TopBarViewModel - This is a debug message.
+2022-06-01 20:27:13.959 [JavaFX Application Thread] ERROR org.group07.tourplanner.app.viewmodel.TopBarViewModel - This is a message
+2022-06-01 20:27:13.959 [JavaFX Application Thread] FATAL org.group07.tourplanner.app.viewmodel.TopBarViewModel - This is a message
+2022-06-01 20:27:13.959 [JavaFX Application Thread] DEBUG org.group07.tourplanner.app.viewmodel.TopBarViewModel - This is a message
+2022-06-01 20:27:13.960 [JavaFX Application Thread] WARN  org.group07.tourplanner.app.viewmodel.TopBarViewModel - This is a message
+2022-06-01 20:27:50.556 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 20:27:50.557 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 20:27:50.557 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 20:27:50.557 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 20:27:54.293 [JavaFX Application Thread] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 20:27:54.293 [JavaFX Application Thread] ERROR org.group07.tourplanner.app.Main - This is a message
+2022-06-01 20:27:54.293 [JavaFX Application Thread] FATAL org.group07.tourplanner.app.Main - This is a message
+2022-06-01 20:27:54.293 [JavaFX Application Thread] DEBUG org.group07.tourplanner.app.Main - This is a message
+2022-06-01 20:27:54.293 [JavaFX Application Thread] WARN  org.group07.tourplanner.app.Main - This is a message
+2022-06-01 20:28:07.330 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 20:28:07.331 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 20:28:07.331 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 20:28:07.331 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 20:28:10.136 [JavaFX Application Thread] ERROR org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 20:28:10.137 [JavaFX Application Thread] FATAL org.group07.tourplanner.bl.PdfGenerator - This is a message
+2022-06-01 20:29:01.745 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 20:29:01.746 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 20:29:01.746 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 20:29:01.746 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 20:29:39.704 [main] DEBUG org.group07.tourplanner.app.Main - This is a debug message.
+2022-06-01 20:29:39.705 [main] FATAL org.group07.tourplanner.app.Main - This is a fatal message.
+2022-06-01 20:29:39.705 [main] WARN  org.group07.tourplanner.app.Main - This is a warning message.
+2022-06-01 20:29:39.706 [main] ERROR org.group07.tourplanner.app.Main - This is an error message.
+2022-06-01 20:29:42.809 [JavaFX Application Thread] DEBUG org.group07.tourplanner.app.viewmodel.TopBarViewModel - This is a debug message.
+2022-06-01 20:29:42.809 [JavaFX Application Thread] ERROR org.group07.tourplanner.app.viewmodel.TopBarViewModel - This is a message
+2022-06-01 20:29:42.809 [JavaFX Application Thread] FATAL org.group07.tourplanner.app.viewmodel.TopBarViewModel - This is a message
+2022-06-01 20:29:42.809 [JavaFX Application Thread] DEBUG org.group07.tourplanner.app.viewmodel.TopBarViewModel - This is a message
+2022-06-01 20:29:42.809 [JavaFX Application Thread] WARN  org.group07.tourplanner.app.viewmodel.TopBarViewModel - This is a message

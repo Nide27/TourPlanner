@@ -1,74 +1,66 @@
 package org.group07.tourplanner.app.controller;
 
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+
+import org.group07.tourplanner.app.helper.AlertHelper;
+import org.group07.tourplanner.app.helper.ResourceManager;
 import org.group07.tourplanner.app.viewmodel.TopBarViewModel;
-import org.group07.tourplanner.bl.PdfGenerator;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-public class TopBarController implements Initializable {
+public class TopBarController {
 
     private final TopBarViewModel topBarViewModel;
 
-    public TextField searchTextField;
-    public Label testLabel;
+    private final ResourceManager rm;
 
     public TopBarController(TopBarViewModel topBarViewModel){
-        this.topBarViewModel = new TopBarViewModel();
+        this.topBarViewModel = topBarViewModel;
+
+        rm = ResourceManager.getInstance();
     }
 
     @FXML
-    private Label welcomeText;
+    void initialize(){  }
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    private void onMenuHelpAboutClicked(ActionEvent actionEvent) {
+        AlertHelper.showAlert(Alert.AlertType.INFORMATION, rm.load("ALERT_INFO_ABOUT_TITLE"), rm.load("ALERT_INFO_ABOUT_MSG"));
     }
 
     @FXML
-    protected void editAction(){}
-
-    @FXML
-    protected void fileAction(){}
-
-    @FXML
-    protected void optionsAction(){}
-
-    @FXML
-    protected void helpAction(){}
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
-    }
-
-    public void onMenuFileQuitClicked(ActionEvent actionEvent) {
-        Platform.exit();
-    }
-
-    public void onMenuHelpAboutClicked(ActionEvent actionEvent) {
-        Alert aboutBox = new Alert(Alert.AlertType.INFORMATION, "Semesterproject BIF4-SWE2\nby Edin&Vale");
-        aboutBox.setTitle("About TourPlanner");
-        aboutBox.showAndWait();
-    }
-
-    public void onMenuTourReportClicked(ActionEvent actionEvent){
+    private void onMenuTourReport(ActionEvent actionEvent){
         topBarViewModel.createTourReport();
     }
 
-    public void onMenuSummarizedReportClicked(ActionEvent actionEvent){
-        topBarViewModel.createSummarizedReport();
+    @FXML
+    private void onMenuSummarizedReport(ActionEvent actionEvent){ topBarViewModel.createSummarizedReport(); }
+
+    @FXML
+    private void onFileImport(ActionEvent actionEvent){
+        try {
+            topBarViewModel.importFile();
+        } catch (JsonProcessingException e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_JSON_MSG"));
+        } catch (FileNotFoundException e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_FNF_MSG"));
+        } catch (IOException e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_IO_I_MSG"));
+        }
     }
 
-
-
+    @FXML
+    private void onFileExport(ActionEvent actionEvent){
+        try {
+            topBarViewModel.exportFile();
+        } catch (JsonProcessingException e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_JSON_MSG"));
+        } catch (IOException e) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_IO_O_MSG"));
+        }
+    }
 }

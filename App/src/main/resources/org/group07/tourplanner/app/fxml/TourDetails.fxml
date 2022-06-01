@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Text?>
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.group07.tourplanner.app.controller.TourDetailsController">
+    <ToolBar>
+        <Label text="%TOURDETAILS_NAME"/>
+        <TextField fx:id="nameTextField" HBox.hgrow="ALWAYS"/>
+    </ToolBar>
+    <SplitPane dividerPositions="0.5" orientation="VERTICAL" VBox.vgrow="ALWAYS">
+        <TabPane tabClosingPolicy="UNAVAILABLE">
+            <Tab text="%MediaDetails_Tab_Route">
+                <ImageView fx:id="imageView"/>
+            </Tab>
+            <Tab text="%MediaDetails_Tab_Description">
+                <VBox>
+                    <Text fx:id="descriptionText"/>
+                    <Text fx:id="distanceText"/>
+                    <Text fx:id="estimateText"/>
+                    <Text fx:id="popularityText"/>
+                    <Text fx:id="childFriendlinessText"/>
+                </VBox>
+            </Tab>
+        </TabPane>
+    </SplitPane>
+    <fx:include fx:id="tourLogs" source="TourLogs.fxml"/>
+</VBox>
