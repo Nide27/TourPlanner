@@ -1,11 +1,11 @@
 package org.group07.tourplanner.dal;
 
-import lombok.SneakyThrows;
 import org.group07.tourplanner.dal.model.TourItem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,9 +18,8 @@ public class TourItemDao implements Dao<TourItem> {
         this.conn = conn;
     }
 
-    @SneakyThrows
     @Override
-    public Optional<TourItem> get(int id) {
+    public Optional<TourItem> get(int id) throws SQLException {
 
         String sql = "SELECT * FROM items WHERE id=?;";
 
@@ -47,9 +46,8 @@ public class TourItemDao implements Dao<TourItem> {
         return tourItem;
     }
 
-    @SneakyThrows
     @Override
-    public List<TourItem> getAll() {
+    public List<TourItem> getAll() throws SQLException {
 
         String sql = "SELECT * FROM items;";
 
@@ -76,9 +74,8 @@ public class TourItemDao implements Dao<TourItem> {
         return tourItems;
     }
 
-    @SneakyThrows
     @Override
-    public void create(TourItem tourItem) {
+    public void create(TourItem tourItem) throws SQLException {
 
         String sql = "INSERT INTO items (name, description, departure, destination, transport, distance, estimate) VALUES (?,?,?,?,?,?,?);";
 
@@ -95,9 +92,8 @@ public class TourItemDao implements Dao<TourItem> {
         stmt.execute();
     }
 
-    @SneakyThrows
     @Override
-    public void update(TourItem tourItem) {
+    public void update(TourItem tourItem) throws SQLException {
 
         String sql = "UPDATE items SET name = ?, description = ?, departure = ?, destination = ?, transport = ?, distance = ?, estimate = ? WHERE id = ?";
 
@@ -115,9 +111,8 @@ public class TourItemDao implements Dao<TourItem> {
         stmt.execute();
     }
 
-    @SneakyThrows
     @Override
-    public void delete(TourItem tourItem) {
+    public void delete(TourItem tourItem) throws SQLException {
 
         String sql = "DELETE FROM items WHERE id=?;";
 

@@ -3,23 +3,20 @@ package org.group07.tourplanner.app.controller;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Window;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.group07.tourplanner.app.helper.AlertHelper;
-import org.group07.tourplanner.app.helper.ResourceManager;
+import org.group07.tourplanner.bl.ResourceManager;
 import org.group07.tourplanner.app.viewmodel.CreateTourItemViewModel;
-import org.group07.tourplanner.dal.ConfigManager;
 
-import java.util.ResourceBundle;
+import java.sql.SQLException;
 
 public class CreateTourItemController {
     @FXML
     private ComboBox<String> transportTyp;
-    @FXML
-    private Button submitButton;
     @FXML
     private TextField nameField;
     @FXML
@@ -32,6 +29,8 @@ public class CreateTourItemController {
     private final CreateTourItemViewModel createTourItemViewModel;
 
     private final ResourceManager rm;
+
+    private static final Logger logger = LogManager.getLogger(CreateTourItemController.class);
 
     public CreateTourItemController(CreateTourItemViewModel createTourItemViewModel) {
         this.createTourItemViewModel = createTourItemViewModel;
@@ -71,6 +70,11 @@ public class CreateTourItemController {
             return;
         }
 
-        this.createTourItemViewModel.createTour();
+        try {
+            this.createTourItemViewModel.createTour();
+        } catch (SQLException e) {
+            logger.error("DB error:\n" + e);
+            AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_DB"));
+        }
     }
 }

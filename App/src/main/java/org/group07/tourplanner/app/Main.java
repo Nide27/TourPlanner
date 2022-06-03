@@ -6,8 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.group07.tourplanner.app.viewmodel.TourOverviewViewModel;
-import org.group07.tourplanner.bl.PdfGenerator;
 import org.group07.tourplanner.dal.ConfigManager;
 
 import java.io.IOException;

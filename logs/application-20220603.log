@@ -1,0 +1,105 @@
+2022-06-03 13:47:39.230 [JavaFX Application Thread] ERROR org.group07.tourplanner.app.controller.TopBarController - Could not parse JSON:
+com.fasterxml.jackson.core.io.JsonEOFException: Unexpected end-of-input: expected close marker for Object (start marker at [Source: (String)"{
+  "tourItem" : {
+    "id" : 48,
+    "name" : "Test",
+    "description" : "PP",
+    "departure" : "Wien",
+    "destination" : "Linz",
+    "transport" : "FASTEST",
+    "distance" : 113.913,
+    "estimate" : "01:45:40"
+  },
+  "tourLogList" : [ {
+    "tourid" : 48,
+    "date" : "2022-05-04",
+    "comment" : "Nice",
+    "difficulty" : 5,
+    "duration" : 140,
+    "rating" : 5
+  }, {
+    "tourid" : 48,
+    "date" : "2022-05-10",
+    "comment" : "Test6",
+    "difficulty" : 4,
+    "duration" : 225,
+  "[truncated 21 chars]; line: 1, column: 1])
+ at [Source: (String)"{
+  "tourItem" : {
+    "id" : 48,
+    "name" : "Test",
+    "description" : "PP",
+    "departure" : "Wien",
+    "destination" : "Linz",
+    "transport" : "FASTEST",
+    "distance" : 113.913,
+    "estimate" : "01:45:40"
+  },
+  "tourLogList" : [ {
+    "tourid" : 48,
+    "date" : "2022-05-04",
+    "comment" : "Nice",
+    "difficulty" : 5,
+    "duration" : 140,
+    "rating" : 5
+  }, {
+    "tourid" : 48,
+    "date" : "2022-05-10",
+    "comment" : "Test6",
+    "difficulty" : 4,
+    "duration" : 225,
+  "[truncated 21 chars]; line: 27, column: 1]
+2022-06-03 13:48:14.975 [JavaFX Application Thread] ERROR org.group07.tourplanner.bl.PdfGenerator - Could not parse JSON:
+com.fasterxml.jackson.core.io.JsonEOFException: Unexpected end-of-input: expected close marker for Object (start marker at [Source: (String)"{
+  "tourItem" : {
+    "id" : 48,
+    "name" : "Test",
+    "description" : "PP",
+    "departure" : "Wien",
+    "destination" : "Linz",
+    "transport" : "FASTEST",
+    "distance" : 113.913,
+    "estimate" : "01:45:40"
+  },
+  "tourLogList" : [ {
+    "tourid" : 48,
+    "date" : "2022-05-04",
+    "comment" : "Nice",
+    "difficulty" : 5,
+    "duration" : 140,
+    "rating" : 5
+  }, {
+    "tourid" : 48,
+    "date" : "2022-05-10",
+    "comment" : "Test6",
+    "difficulty" : 4,
+    "duration" : 225,
+  "[truncated 21 chars]; line: 1, column: 1])
+ at [Source: (String)"{
+  "tourItem" : {
+    "id" : 48,
+    "name" : "Test",
+    "description" : "PP",
+    "departure" : "Wien",
+    "destination" : "Linz",
+    "transport" : "FASTEST",
+    "distance" : 113.913,
+    "estimate" : "01:45:40"
+  },
+  "tourLogList" : [ {
+    "tourid" : 48,
+    "date" : "2022-05-04",
+    "comment" : "Nice",
+    "difficulty" : 5,
+    "duration" : 140,
+    "rating" : 5
+  }, {
+    "tourid" : 48,
+    "date" : "2022-05-10",
+    "comment" : "Test6",
+    "difficulty" : 4,
+    "duration" : 225,
+  "[truncated 21 chars]; line: 27, column: 1]
+2022-06-03 14:40:20.410 [JavaFX Application Thread] ERROR org.group07.tourplanner.app.controller.CreateTourLogController - DB error:
+org.postgresql.util.PSQLException: ERROR: duplicate key value violates unique constraint "logs_pkey"
+  Detail: Key (tourid, date)=(68, 2022-06-03) already exists.

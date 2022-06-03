@@ -2,12 +2,14 @@ package org.group07.tourplanner.app.viewmodel;
 
 import javafx.beans.property.*;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ListIterator;
 
 import lombok.Getter;
 
-import org.group07.tourplanner.app.helper.ResourceManager;
+import org.group07.tourplanner.bl.ResourceManager;
 import org.group07.tourplanner.bl.MapQuestThread;
 import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.model.TourItem;
@@ -44,7 +46,7 @@ public class TourDetailsViewModel {
         this.rm = ResourceManager.getInstance();
     }
 
-    public void setTourItem(TourItem tourItem){
+    public void setTourItem(TourItem tourItem) throws SQLException, IOException {
 
         this.tourItem = tourItem;
 

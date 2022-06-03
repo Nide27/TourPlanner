@@ -12,14 +12,16 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import lombok.Getter;
-import lombok.SneakyThrows;
 
 import org.group07.tourplanner.app.FXMLDependencyInjection;
 import org.group07.tourplanner.app.helper.AlertHelper;
-import org.group07.tourplanner.app.helper.ResourceManager;
+import org.group07.tourplanner.bl.ResourceManager;
 import org.group07.tourplanner.dal.ConfigManager;
 import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.model.TourItem;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class EditTourItemViewModel {
 
@@ -44,8 +46,7 @@ public class EditTourItemViewModel {
         this.rm = ResourceManager.getInstance();
     }
 
-    @SneakyThrows
-    public void createWindow(ObservableList<TourItem> list, TourItem tourItem){
+    public void createWindow(ObservableList<TourItem> list, TourItem tourItem) throws IOException {
 
         id = tourItem.getId();
         name.set(tourItem.getName());
@@ -75,7 +76,7 @@ public class EditTourItemViewModel {
         stage.showAndWait();
     }
 
-    public void editTour(){
+    public void editTour() throws SQLException {
 
         String transport;
 

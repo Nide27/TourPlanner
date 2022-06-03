@@ -1,11 +1,11 @@
 package org.group07.tourplanner.dal;
 
-import lombok.SneakyThrows;
 import org.group07.tourplanner.dal.model.TourLog;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +23,7 @@ public class TourLogDao implements Dao<TourLog> {
     @Override
     public List<TourLog> getAll() { return new ArrayList<>(); }
 
-    @SneakyThrows
-    public List<TourLog> getAllById(int id){
+    public List<TourLog> getAllById(int id) throws SQLException {
         String sql = "SELECT * FROM logs WHERE tourid=?;";
 
         PreparedStatement stmt = conn.prepareStatement(sql);
@@ -48,9 +47,8 @@ public class TourLogDao implements Dao<TourLog> {
         return tourLogList;
     }
 
-    @SneakyThrows
     @Override
-    public void create(TourLog tourLog) {
+    public void create(TourLog tourLog) throws SQLException {
 
         String sql = "INSERT INTO logs (tourid, date, comment, difficulty, duration, rating) VALUES (?,?,?,?,?,?);";
 
@@ -66,9 +64,8 @@ public class TourLogDao implements Dao<TourLog> {
         stmt.execute();
     }
 
-    @SneakyThrows
     @Override
-    public void update(TourLog tourLog) {
+    public void update(TourLog tourLog) throws SQLException {
 
         String sql = "UPDATE logs SET comment = ?, difficulty = ?, duration = ?, rating = ? WHERE tourid = ? AND date = ?";
 
@@ -84,9 +81,8 @@ public class TourLogDao implements Dao<TourLog> {
         stmt.execute();
     }
 
-    @SneakyThrows
     @Override
-    public void delete(TourLog tourLog){
+    public void delete(TourLog tourLog) throws SQLException {
         String sql = "DELETE FROM logs WHERE tourid=? AND date=?;";
 
         PreparedStatement stmt = conn.prepareStatement(sql);

@@ -1,5 +1,7 @@
 package org.group07.tourplanner.app.viewmodel;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -14,10 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import lombok.Getter;
-import lombok.SneakyThrows;
 
 import org.group07.tourplanner.app.FXMLDependencyInjection;
 import org.group07.tourplanner.app.helper.AlertHelper;
@@ -46,8 +46,7 @@ public class CreateTourLogViewModel {
     @Getter
     private final StringProperty ratingField = new SimpleStringProperty();
 
-    @SneakyThrows
-    public void createWindow(ObservableList<TourLog> list, TourItem tourItem){
+    public void createWindow(ObservableList<TourLog> list, TourItem tourItem) throws IOException {
         this.tourLogsList = list;
         this.tourid = tourItem.getId();
 
@@ -64,7 +63,7 @@ public class CreateTourLogViewModel {
         stage.showAndWait();
     }
 
-    public void createTourLog(){
+    public void createTourLog() throws SQLException {
         int difficulty = Integer.parseInt(difficultyField.get());
         int duration = Integer.parseInt(durationHourField.get()) * 60 + Integer.parseInt(durationMinuteField.get());
         int rating = Integer.parseInt(ratingField.get());

@@ -1,10 +1,7 @@
 package org.group07.tourplanner.bl;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URI;
 import java.net.URL;
 import java.net.http.HttpClient;
@@ -22,7 +19,6 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 
 import lombok.Getter;
-import lombok.SneakyThrows;
 
 import org.group07.tourplanner.dal.ConfigManager;
 import org.group07.tourplanner.dal.Jackson;
@@ -46,8 +42,7 @@ public class MapQuestThread extends Thread {
     private StringProperty distance;
     private StringProperty estimate;
 
-    @SneakyThrows
-    public MapQuestThread(TourItem tourItem, ObjectProperty<Image> imgProperty, StringProperty distance, StringProperty estimate){
+    public MapQuestThread(TourItem tourItem, ObjectProperty<Image> imgProperty, StringProperty distance, StringProperty estimate) throws IOException {
         this.tourItem = tourItem;
 
         this.key = ConfigManager.getInstance().loadConfigFromFile(keyConfigPath, MapQuestConfig.class).getKey();

@@ -1,5 +1,7 @@
 package org.group07.tourplanner.app.viewmodel;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +46,7 @@ public class TourLogsViewModel {
         }
     }
 
-    public void setTourItem(TourItem tourItem){
+    public void setTourItem(TourItem tourItem) throws SQLException {
         if(tourItem == null)
             return;
 
@@ -58,14 +60,14 @@ public class TourLogsViewModel {
         this.tourLogsList.addAll(tourLogList);
     }
 
-    public void createTourLog(){
+    public void createTourLog() throws IOException {
         if(tourItem == null)
             return;
 
         this.createTourLogViewModel.createWindow(this.tourLogsList, tourItem);
     }
 
-    public void deleteTourLog(TourLog tourLog){
+    public void deleteTourLog(TourLog tourLog) throws SQLException {
         if(tourLog == null)
             return;
 
@@ -73,7 +75,7 @@ public class TourLogsViewModel {
         tourLogsList.remove(tourLog);
     }
 
-    public void editTourLog(TourLog tourLog){
+    public void editTourLog(TourLog tourLog) throws IOException {
         if(tourLog == null)
             return;
 

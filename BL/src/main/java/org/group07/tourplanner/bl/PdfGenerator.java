@@ -1,15 +1,15 @@
 package org.group07.tourplanner.bl;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
+import com.lowagie.text.DocumentException;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
-import lombok.SneakyThrows;
 
 import org.group07.tourplanner.dal.model.TourItem;
 import org.group07.tourplanner.dal.model.TourReport;
@@ -22,6 +22,12 @@ import org.xhtmlrenderer.pdf.ITextRenderer;
 
 public class PdfGenerator {
 
+    private final ResourceManager rm;
+
+    public PdfGenerator(){
+        this.rm = ResourceManager.getInstance();
+    }
+
     public String parseSummarizedTemplate(List<TourSummary> list) {
 
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
@@ -32,14 +38,14 @@ public class PdfGenerator {
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
-        context.setVariable("title", "Summarized Report:");
+        context.setVariable("title", rm.load("PDF_SUMMARY_TITLE"));
 
         context.setVariable("list", list);
 
         return templateEngine.process("org/group07/tourplanner/bl/pdfsummarizedtemplate", context);
     }
 
-    public String parseTourTemplate(TourReport report) {
+    public String parseTourTemplate(TourReport report) throws IOException {
 
         ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
         templateResolver.setSuffix(".html");
@@ -56,10 +62,9 @@ public class PdfGenerator {
         templateEngine.setTemplateResolver(templateResolver);
 
         Context context = new Context();
-        context.setVariable("title", "Tour Report:");
+        context.setVariable("title", rm.load("PDF_TOUR_TITLE"));
 
         ObjectProperty<javafx.scene.image.Image> imageView = new SimpleObjectProperty<>();
-
 
         //MAPQUEST API THREAD
         MapQuestThread mapQuestThread = new MapQuestThread(tourItem, imageView, distance, estimate);
@@ -75,8 +80,7 @@ public class PdfGenerator {
         return templateEngine.process("org/group07/tourplanner/bl/pdftourtemplate", context);
     }
 
-    @SneakyThrows
-    public void generatePdfFromHtml(String html, String path) {
+    public void generatePdfFromHtml(String html, String path) throws IOException, DocumentException {
         OutputStream outputStream = new FileOutputStream(path);
 
         ITextRenderer renderer = new ITextRenderer();

@@ -1,4 +1,4 @@
-package org.group07.tourplanner.app.helper;
+package org.group07.tourplanner.bl;
 
 import org.group07.tourplanner.dal.ConfigManager;
 

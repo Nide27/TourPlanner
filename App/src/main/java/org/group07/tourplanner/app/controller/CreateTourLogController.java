@@ -6,9 +6,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.group07.tourplanner.app.helper.AlertHelper;
-import org.group07.tourplanner.app.helper.ResourceManager;
+import org.group07.tourplanner.bl.ResourceManager;
 import org.group07.tourplanner.app.viewmodel.CreateTourLogViewModel;
+import org.group07.tourplanner.dal.DAL;
+
+import java.sql.SQLException;
 
 public class CreateTourLogController {
 
@@ -28,6 +33,8 @@ public class CreateTourLogController {
     private final CreateTourLogViewModel createTourLogViewModel;
     
     private final ResourceManager rm;
+
+    private static final Logger logger = LogManager.getLogger(CreateTourLogController.class);
 
     @FXML
     void initialize() {
@@ -75,7 +82,12 @@ public class CreateTourLogController {
             return;
         }
 
-        this.createTourLogViewModel.createTourLog();
+        try {
+            this.createTourLogViewModel.createTourLog();
+        } catch (SQLException e) {
+            logger.error("DB error:\n" + e);
+            AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_DB"));
+        }
     }
 
     private boolean notNumeric(String strNum) {
@@ -83,7 +95,7 @@ public class CreateTourLogController {
             return true;
         }
         try {
-            double d = Double.parseDouble(strNum);
+            Double.parseDouble(strNum);
         } catch (NumberFormatException nfe) {
             return true;
         }

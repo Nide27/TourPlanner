@@ -1,18 +1,19 @@
 package org.group07.tourplanner.app.viewmodel;
 
 import java.io.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
+import com.lowagie.text.DocumentException;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.group07.tourplanner.app.Main;
-import org.group07.tourplanner.app.helper.ResourceManager;
+import org.group07.tourplanner.bl.ResourceManager;
 import org.group07.tourplanner.bl.PdfGenerator;
 import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.Jackson;
@@ -31,6 +32,7 @@ public class TopBarViewModel {
 
     private final ResourceManager rm;
 
+    private static final Logger logger = LogManager.getLogger(DAL.class);
 
     public TopBarViewModel(TourOverviewViewModel tourOverviewViewModel){
         this.tourOverviewViewModel = tourOverviewViewModel;
@@ -45,14 +47,19 @@ public class TopBarViewModel {
         this.tourItem = tourItem;
     }
 
-    public void createSummarizedReport(){
+    public void createSummarizedReport() throws IOException, DocumentException, SQLException {
 
         List<TourItem> tourItemList = DAL.getInstance().getTourItemDao().getAll();
 
         List<TourSummary> tourSummaryList = new ArrayList<>();
 
         tourItemList.forEach(tourItem -> {
-            List<TourLog> tourLogList = DAL.getInstance().getTourLogDao().getAllById(tourItem.getId());
+            List<TourLog> tourLogList = null;
+            try {
+                tourLogList = DAL.getInstance().getTourLogDao().getAllById(tourItem.getId());
+            } catch (SQLException e) {
+                logger.warn("Could not retrieve Tours for Summary PDF:" + e);
+            }
 
             ListIterator<TourLog> it = tourLogList.listIterator();
 
@@ -87,10 +94,11 @@ public class TopBarViewModel {
 
         PdfGenerator pdfGenerator = new PdfGenerator();
         String html = pdfGenerator.parseSummarizedTemplate(tourSummaryList);
+
         pdfGenerator.generatePdfFromHtml(html, path);
     }
 
-    public void createTourReport(){
+    public void createTourReport() throws IOException, DocumentException, SQLException {
 
         if(this.tourItem == null)
             return;
@@ -108,7 +116,7 @@ public class TopBarViewModel {
         pdfGenerator.generatePdfFromHtml(html, path);
     }
 
-    public void importFile() throws IOException {
+    public void importFile() throws IOException, SQLException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle(rm.load("FILE_IMPORT_TITLE"));
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json"));
@@ -136,20 +144,29 @@ public class TopBarViewModel {
 
         TourLogDao tourLogDao = DAL.getInstance().getTourLogDao();
 
-        tourReport.getTourLogList().forEach(tourLog -> {
+        tourReport.getTourLogList().forEach (tourLog ->  {
             tourLog.setTourid(tourItem.getId());
-            tourLogDao.create(tourLog);
+            try {
+                tourLogDao.create(tourLog);
+            } catch (SQLException e) {
+                logger.warn("Could not import TourLogs:\n" + e);
+            }
         });
 
         tourOverviewViewModel.getObservableTourItems().clear();
         tourOverviewViewModel.getObservableTourItems().addAll(DAL.getInstance().getTourItemDao().getAll());
     }
 
-    public void exportFile() throws IOException {
+    public void exportFile() throws IOException, SQLException {
         if(this.tourItem == null)
             return;
 
-        List<TourLog> tourLogList = DAL.getInstance().getTourLogDao().getAllById(tourItem.getId());
+        List<TourLog> tourLogList = null;
+        try {
+            tourLogList = DAL.getInstance().getTourLogDao().getAllById(tourItem.getId());
+        } catch (SQLException e) {
+            throw e;
+        }
 
         TourReport tourReport = new TourReport(tourItem, tourLogList);
 
