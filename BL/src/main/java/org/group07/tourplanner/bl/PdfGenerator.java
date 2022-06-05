@@ -76,6 +76,7 @@ public class PdfGenerator {
         context.setVariable("tourData", report.getTourItem());
         context.setVariable("img", link);
 
+        System.out.println(templateEngine.process("org/group07/tourplanner/bl/pdftourtemplate", context));
 
         return templateEngine.process("org/group07/tourplanner/bl/pdftourtemplate", context);
     }

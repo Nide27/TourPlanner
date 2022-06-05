@@ -51,8 +51,6 @@ public class EditTourLogViewModel {
     }
 
     public void createWindow(ObservableList<TourLog> list, TourLog tourLog) throws IOException {
-
-        System.out.println(tourLog.getComment());
         this.tourid = tourLog.getTourid();
         this.datePicker.set(tourLog.getDate());
         this.commentField.set(tourLog.getComment());

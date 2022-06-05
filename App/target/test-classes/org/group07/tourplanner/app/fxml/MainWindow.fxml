@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.group07.tourplanner.app.controller.MainWindowController"
+      prefHeight="900.0" prefWidth="1100.0">
+
+    <fx:include fx:id="topBar" source="TopBar.fxml"/>
+    <fx:include fx:id="searchBar" source="SearchBar.fxml"/>
+    <SplitPane dividerPositions="0.3" VBox.vgrow="ALWAYS">
+        <fx:include fx:id="tourOverview" source="TourOverview.fxml"/>
+        <fx:include fx:id="tourDetails" source="TourDetails.fxml"/>
+    </SplitPane>
+</VBox>

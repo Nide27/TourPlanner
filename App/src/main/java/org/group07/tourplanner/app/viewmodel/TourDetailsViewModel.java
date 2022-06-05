@@ -11,7 +11,7 @@ import lombok.Getter;
 
 import org.group07.tourplanner.bl.ResourceManager;
 import org.group07.tourplanner.bl.MapQuestThread;
-import org.group07.tourplanner.dal.DAL;
+import org.group07.tourplanner.dal.TourLogDao;
 import org.group07.tourplanner.dal.model.TourItem;
 import org.group07.tourplanner.dal.model.TourLog;
 
@@ -20,6 +20,8 @@ public class TourDetailsViewModel {
     private TourItem tourItem;
 
     private final ResourceManager rm;
+
+    private final TourLogDao tourLogDao;
 
     @Getter
     private final StringProperty name = new SimpleStringProperty();
@@ -42,8 +44,9 @@ public class TourDetailsViewModel {
     @Getter
     private final ObjectProperty<javafx.scene.image.Image> imageView = new SimpleObjectProperty<>();
 
-    public TourDetailsViewModel() {
+    public TourDetailsViewModel(TourLogDao tourLogDao) {
         this.rm = ResourceManager.getInstance();
+        this.tourLogDao = tourLogDao;
     }
 
     public void setTourItem(TourItem tourItem) throws SQLException, IOException {
@@ -67,7 +70,7 @@ public class TourDetailsViewModel {
         double totalRating = 0;
         double totalDifficulty = 0;
 
-        List<TourLog> tourLogList = DAL.getInstance().getTourLogDao().getAllById(tourItem.getId());
+        List<TourLog> tourLogList = tourLogDao.getAllById(tourItem.getId());
 
         ListIterator<TourLog> it = tourLogList.listIterator();
 

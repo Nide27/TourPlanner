@@ -9,7 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="App" />
         <module name="BL" />
-        <module name="TourPlanner" />
         <module name="DAL" />
       </profile>
       <profile name="Disabled" enabled="true" />

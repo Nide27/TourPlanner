@@ -83,7 +83,7 @@ public class TopBarViewModel {
                 avgRating /= tourLogList.size();
             }
 
-            tourSummaryList.add(new TourSummary(tourItem.getName(), avgTime, avgDifficulty, avgRating));
+            tourSummaryList.add(new TourSummary(tourItem.getName(), Math.round(avgTime * 100) / 100, Math.round(avgDifficulty * 100) / 100, Math.round(avgRating * 100) / 100));
         });
 
         DirectoryChooser dr = new DirectoryChooser();
@@ -93,6 +93,7 @@ public class TopBarViewModel {
         String path = dir.getAbsolutePath() + File.separator + "summary.pdf";
 
         PdfGenerator pdfGenerator = new PdfGenerator();
+
         String html = pdfGenerator.parseSummarizedTemplate(tourSummaryList);
 
         pdfGenerator.generatePdfFromHtml(html, path);
@@ -112,11 +113,12 @@ public class TopBarViewModel {
         String path = dir.getAbsolutePath() + File.separator + tourItem.getName() + ".pdf";
 
         PdfGenerator pdfGenerator = new PdfGenerator();
+
         String html = pdfGenerator.parseTourTemplate(new TourReport(this.tourItem, tourLogList));
         pdfGenerator.generatePdfFromHtml(html, path);
     }
 
-    public void importFile() throws IOException, SQLException {
+    public void importFile() throws IOException, SQLException, NullPointerException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle(rm.load("FILE_IMPORT_TITLE"));
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON files (*.json)", "*.json"));

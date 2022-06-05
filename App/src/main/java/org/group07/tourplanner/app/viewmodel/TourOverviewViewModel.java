@@ -15,6 +15,7 @@ import lombok.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.group07.tourplanner.dal.DAL;
+import org.group07.tourplanner.dal.TourItemDao;
 import org.group07.tourplanner.dal.model.TourItem;
 
 public class TourOverviewViewModel {
@@ -33,9 +34,12 @@ public class TourOverviewViewModel {
     private final CreateTourItemViewModel createTourItemViewModel;
     private final EditTourItemViewModel editTourItemViewModel;
 
-    public TourOverviewViewModel(CreateTourItemViewModel createTourItemViewModel, EditTourItemViewModel editTourItemViewModel){
+    private final TourItemDao tourItemDao;
+
+    public TourOverviewViewModel(CreateTourItemViewModel createTourItemViewModel, EditTourItemViewModel editTourItemViewModel, TourItemDao tourItemDao){
+        this.tourItemDao = tourItemDao;
         try {
-            setTours(DAL.getInstance().getTourItemDao().getAll());
+            setTours(tourItemDao.getAll());
         } catch (SQLException e) {
             logger.warn("Could not retrieve TourItems:\n" + e);
         }
@@ -70,7 +74,7 @@ public class TourOverviewViewModel {
         if(tourItem == null)
             return;
 
-        DAL.getInstance().getTourItemDao().delete(tourItem);
+        tourItemDao.delete(tourItem);
         observableTourItems.remove(tourItem);
     }
 
@@ -80,7 +84,7 @@ public class TourOverviewViewModel {
 
         editTourItemViewModel.createWindow(observableTourItems, tourItem);
 
-        Optional<TourItem> editedTourItem = DAL.getInstance().getTourItemDao().get(tourItem.getId());
+        Optional<TourItem> editedTourItem = tourItemDao.get(tourItem.getId());
 
         notifyListeners(editedTourItem.get());
     }

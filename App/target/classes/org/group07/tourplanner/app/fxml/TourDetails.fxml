@@ -12,10 +12,10 @@
     </ToolBar>
     <SplitPane dividerPositions="0.5" orientation="VERTICAL" VBox.vgrow="ALWAYS">
         <TabPane tabClosingPolicy="UNAVAILABLE">
-            <Tab text="%MediaDetails_Tab_Route">
+            <Tab text="%TourDetails_Tab_Route">
                 <ImageView fx:id="imageView"/>
             </Tab>
-            <Tab text="%MediaDetails_Tab_Description">
+            <Tab text="%TourDetails_Tab_Description">
                 <VBox>
                     <Text fx:id="descriptionText"/>
                     <Text fx:id="distanceText"/>

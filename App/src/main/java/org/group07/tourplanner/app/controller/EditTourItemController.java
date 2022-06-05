@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.group07.tourplanner.app.helper.AlertHelper;
 import org.group07.tourplanner.bl.ResourceManager;
 import org.group07.tourplanner.app.viewmodel.EditTourItemViewModel;
+import org.group07.tourplanner.dal.DAL;
 
 import java.sql.SQLException;
 
@@ -31,7 +32,7 @@ public class EditTourItemController {
 
     private final ResourceManager rm;
 
-    private static final Logger logger = LogManager.getLogger(EditTourItemController.class);
+    private static final Logger logger = LogManager.getLogger(DAL.class);
 
     public EditTourItemController(EditTourItemViewModel editTourItemViewModel){
         this.editTourItemViewModel = editTourItemViewModel;

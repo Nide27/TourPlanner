@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+        <h3 style="text-align: center; color: green">
+            <span th:text="${title} + ' ' + ${tourData.getName()}"></span>
+        </h3>
+        <img th:src="@{${img}}"/>
+
+        <p th:text="'Tour Description: ' + ${tourData.getDescription()}"></p>
+        <p th:text="'From: ' + ${tourData.getDeparture()}"></p>
+        <p th:text="'To: ' + ${tourData.getDestination()}"></p>
+        <p th:text="'Distance: ' + ${tourData.getDistance()}"></p>
+        <p th:text="'Estimate: ' + ${tourData.getEstimate()}"></p>
+        <p th:text="'Transport Type: ' + ${tourData.getTransport()}"></p>
+
+        <h3>Tour Logs</h3>
+        <div th:if="${logList.isEmpty()}">
+            <h4>No Logs!</h4>
+        </div>
+        <div th:unless="${logList.isEmpty()}" th:each="entry : ${logList}">
+            <h5 th:text="'Comment: ' + ${entry.getComment()}"></h5>
+            <span th:text="'Date: ' + ${entry.getDate()}"></span>
+            <span th:text="'Difficulty: ' + ${entry.getDifficulty()}"></span>
+            <span th:text="'Duration: ' + ${entry.getDuration()}"></span>
+            <span th:text="'Rating: ' + ${entry.getRating()}"></span>
+        </div>
+    </body>
+</html>

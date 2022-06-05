@@ -1,0 +1,10 @@
+{
+    "id": 0,
+    "name": "Test",
+    "description": "Description",
+    "departure": "Wien",
+    "destination": "Linz",
+    "transport": "FASTEST",
+    "distance": 100,
+    "estimate": "01:45:00"
+}

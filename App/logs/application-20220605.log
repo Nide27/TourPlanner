@@ -1,0 +1,14 @@
+2022-06-05 17:57:55.364 [main] FATAL org.group07.tourplanner.dal.DAL - Error connecting do DB
+java.io.FileNotFoundException: ./DAL/src/main/resources/org/group07/tourplanner/dal/dbconfig.json (No such file or directory)
+2022-06-05 17:59:15.740 [main] FATAL org.group07.tourplanner.dal.DAL - Error connecting do DB
+java.io.FileNotFoundException: ./DAL/src/main/resources/org/group07/tourplanner/dal/dbconfig.json (No such file or directory)
+2022-06-05 19:59:55.894 [main] FATAL org.group07.tourplanner.dal.DAL - Error connecting do DB
+java.io.FileNotFoundException: ./DAL/src/main/resources/org/group07/tourplanner/dal/dbconfig.json (No such file or directory)
+2022-06-05 20:19:12.046 [main] FATAL org.group07.tourplanner.dal.DAL - Error connecting do DB
+java.io.FileNotFoundException: ./DAL/src/main/resources/org/group07/tourplanner/dal/dbconfig.json (No such file or directory)
+2022-06-05 20:19:27.915 [main] FATAL org.group07.tourplanner.dal.DAL - Error connecting do DB
+java.io.FileNotFoundException: ./DAL/src/main/resources/org/group07/tourplanner/dal/dbconfig.json (No such file or directory)
+2022-06-05 20:21:45.238 [main] FATAL org.group07.tourplanner.dal.DAL - Error connecting do DB
+java.io.FileNotFoundException: ./DAL/src/main/resources/org/group07/tourplanner/dal/dbconfig.json (No such file or directory)
+2022-06-05 21:15:53.968 [main] FATAL org.group07.tourplanner.dal.DAL - Error connecting do DB
+java.io.FileNotFoundException: ./DAL/src/main/resources/org/group07/tourplanner/dal/dbconfig.json (No such file or directory)

@@ -1,2 +1,12 @@
+/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/java/org/group07/tourplanner/dal/ConfigManager.java
+/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/java/org/group07/tourplanner/dal/model/TourLog.java
+/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/java/org/group07/tourplanner/dal/TourLogDao.java
+/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/java/org/group07/tourplanner/dal/DAL.java
 /Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/java/org/group07/tourplanner/dal/model/TourItem.java
 /Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/java/org/group07/tourplanner/dal/Dao.java
+/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/java/org/group07/tourplanner/dal/Jackson.java
+/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/java/org/group07/tourplanner/dal/config/DbConfig.java
+/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/java/org/group07/tourplanner/dal/model/TourSummary.java
+/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/java/org/group07/tourplanner/dal/TourItemDao.java
+/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/java/org/group07/tourplanner/dal/config/MapQuestConfig.java
+/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/java/org/group07/tourplanner/dal/model/TourReport.java

@@ -26,7 +26,7 @@ public class TourLogsController {
 
     private final ResourceManager rm;
 
-    private static final Logger logger = LogManager.getLogger(DAL.class);
+    private static final Logger logger = LogManager.getLogger(TourLogsController.class);
 
     public TourLogsController(TourLogsViewModel tourLogsViewModel) {
         this.tourLogsViewModel = tourLogsViewModel;
@@ -40,8 +40,7 @@ public class TourLogsController {
         tourLogsTable.getSelectionModel().selectedItemProperty().addListener(tourLogsViewModel.getChangeListener());
     }
 
-    @FXML
-    private void onAdd(ActionEvent actionEvent){
+    public void onAdd(ActionEvent actionEvent){
         try {
             this.tourLogsViewModel.createTourLog();
         } catch (IOException e) {
@@ -66,7 +65,7 @@ public class TourLogsController {
             return;
 
         try {
-            this.tourLogsViewModel.editTourLog(tourLogsTable.getSelectionModel().getSelectedItem());
+            this.tourLogsViewModel.updateTourLog(tourLogsTable.getSelectionModel().getSelectedItem());
         } catch (IOException e) {
             logger.fatal("FXML error:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_FXML"));

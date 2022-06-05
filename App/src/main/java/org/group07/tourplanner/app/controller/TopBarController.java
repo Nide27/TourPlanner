@@ -23,7 +23,7 @@ public class TopBarController {
 
     private final ResourceManager rm;
 
-    private static final Logger logger = LogManager.getLogger(PdfGenerator.class);
+    private static final Logger logger = LogManager.getLogger(TopBarController.class);
 
     public TopBarController(TopBarViewModel topBarViewModel){
         this.topBarViewModel = topBarViewModel;
@@ -39,8 +39,7 @@ public class TopBarController {
         AlertHelper.showAlert(Alert.AlertType.INFORMATION, rm.load("ALERT_INFO_ABOUT_TITLE"), rm.load("ALERT_INFO_ABOUT_MSG"));
     }
 
-    @FXML
-    private void onMenuTourReport(ActionEvent actionEvent){
+    public void onMenuTourReport(ActionEvent actionEvent){
         try {
             topBarViewModel.createTourReport();
         } catch (FileNotFoundException e) {
@@ -58,8 +57,7 @@ public class TopBarController {
         }
     }
 
-    @FXML
-    private void onMenuSummarizedReport(ActionEvent actionEvent){
+    public void onMenuSummarizedReport(ActionEvent actionEvent){
         try {
             topBarViewModel.createSummarizedReport();
         } catch (FileNotFoundException e) {
@@ -77,11 +75,10 @@ public class TopBarController {
         }
     }
 
-    @FXML
-    private void onFileImport(ActionEvent actionEvent){
+    public void onFileImport(ActionEvent actionEvent){
         try {
             topBarViewModel.importFile();
-        } catch (JsonProcessingException e) {
+        } catch (JsonProcessingException | NullPointerException e) {
             logger.error("Could not parse JSON:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_JSON_MSG"));
         } catch (FileNotFoundException e) {
@@ -96,8 +93,7 @@ public class TopBarController {
         }
     }
 
-    @FXML
-    private void onFileExport(ActionEvent actionEvent){
+    public void onFileExport(ActionEvent actionEvent){
         try {
             topBarViewModel.exportFile();
         } catch (JsonProcessingException e) {

@@ -2,12 +2,13 @@ package org.group07.tourplanner.dal;
 
 import lombok.Getter;
 import org.group07.tourplanner.dal.config.DbConfig;
-import org.group07.tourplanner.dal.model.TourItem;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class DAL {
 
@@ -19,7 +20,9 @@ public class DAL {
         return instance;
     }
 
-    private final String dbConfigPath = "/Users/edinmuhovic/Documents/FH 4.Sem/SWE2/TourPlanner/DAL/src/main/resources/org/group07/tourplanner/dal/dbconfig.json";
+    private final String dbConfigPath = "./DAL/src/main/resources/org/group07/tourplanner/dal/dbconfig.json";
+
+    private static final Logger logger = LogManager.getLogger(DAL.class);
 
     private Connection conn;
 
@@ -29,10 +32,8 @@ public class DAL {
     private TourLogDao tourLogDao;
 
     private DAL() {
-        //docker run --rm --detach --name tourplanner -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin123 -v "/Users/edinmuhovic/Documents/FH\ 4.Sem/SWE2/TourPlanner":/var/lib/postgresql/data -p 5432:5432 postgres
-        try {
-            ConfigManager configManager = ConfigManager.getInstance();
 
+        try {
             DbConfig dbConfig = ConfigManager.getInstance().loadConfigFromFile(dbConfigPath, DbConfig.class);
 
             conn = DriverManager.getConnection(dbConfig.getDbURL(), dbConfig.getDbUser(), dbConfig.getDbPassword());
@@ -40,10 +41,9 @@ public class DAL {
             tourItemDao = new TourItemDao(conn);
             tourLogDao = new TourLogDao(conn);
         } catch (SQLException e) {
-            e.printStackTrace();
-            //return;
+            logger.fatal("Error connecting do DB\n" + e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            logger.fatal("Error connecting do DB\n" + e);
         }
     }
 }

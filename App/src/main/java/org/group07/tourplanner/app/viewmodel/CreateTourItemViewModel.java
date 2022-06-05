@@ -18,6 +18,7 @@ import org.group07.tourplanner.app.helper.AlertHelper;
 import org.group07.tourplanner.bl.ResourceManager;
 import org.group07.tourplanner.dal.ConfigManager;
 import org.group07.tourplanner.dal.DAL;
+import org.group07.tourplanner.dal.TourItemDao;
 import org.group07.tourplanner.dal.model.TourItem;
 
 import java.io.IOException;
@@ -37,12 +38,14 @@ public class CreateTourItemViewModel {
     private final ObjectProperty<String> transportType = new SimpleObjectProperty<>();
 
     private final ResourceManager rm;
+    private final TourItemDao tourItemDao;
 
     private Stage stage;
     private ObservableList<TourItem> tourList;
 
-    public CreateTourItemViewModel(){
+    public CreateTourItemViewModel(TourItemDao tourItemDao){
         this.rm = ResourceManager.getInstance();
+        this.tourItemDao = tourItemDao;
     }
 
     public void createWindow(ObservableList<TourItem> list) throws IOException {
@@ -74,10 +77,10 @@ public class CreateTourItemViewModel {
         }
 
         TourItem tourItem = new TourItem(0, name.get(), description.get(), from.get(), to.get(), transport, 0, "00:00:00");
-        DAL.getInstance().getTourItemDao().create(tourItem);
+        tourItemDao.create(tourItem);
 
         tourList.clear();
-        tourList.addAll(DAL.getInstance().getTourItemDao().getAll());
+        tourList.addAll(tourItemDao.getAll());
 
         name.setValue("");
         description.setValue("");

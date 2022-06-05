@@ -17,7 +17,7 @@ public class ResourceManager {
     }
 
     private ResourceManager(){
-        this.bundle = ResourceBundle.getBundle("org.group07.tourplanner.app." + "gui_strings", ConfigManager.getInstance().getLocale());
+        this.bundle = ResourceBundle.getBundle("org.group07.tourplanner.bl." + "gui_strings", ConfigManager.getInstance().getLocale());
     }
 
     public String load(String res){

@@ -7,6 +7,7 @@ import javafx.scene.control.ListView;
 
 import lombok.Getter;
 
+import lombok.Setter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.group07.tourplanner.app.helper.AlertHelper;
@@ -19,8 +20,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class TourOverviewController {
+    @Setter
     @FXML
-    private ListView<TourItem> tourItemList;
+    private ListView tourItemList;
 
     @Getter
     private final TourOverviewViewModel tourOverviewViewModel;
@@ -40,8 +42,7 @@ public class TourOverviewController {
         tourItemList.getSelectionModel().selectedItemProperty().addListener(tourOverviewViewModel.getChangeListener());
     }
 
-    @FXML
-    private void onAdd(ActionEvent actionEvent) {
+    public void onAdd(ActionEvent actionEvent) {
         try {
             tourOverviewViewModel.createTour();
         } catch (IOException e) {
@@ -50,23 +51,21 @@ public class TourOverviewController {
         }
     }
 
-    @FXML
-    private void onRemove(ActionEvent actionEvent) {
+    public void onRemove(ActionEvent actionEvent) {
         try {
-            tourOverviewViewModel.deleteTour(tourItemList.getSelectionModel().getSelectedItem());
+            tourOverviewViewModel.deleteTour((TourItem) tourItemList.getSelectionModel().getSelectedItem());
         } catch (SQLException e) {
             logger.error("DB error:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_DB"));
         }
     }
 
-    @FXML
-    private void onEdit(ActionEvent actionEvent){
+    public void onEdit(ActionEvent actionEvent){
         if(tourItemList.getSelectionModel().getSelectedItem() == null)
             return;
 
         try {
-            tourOverviewViewModel.updateTour(tourItemList.getSelectionModel().getSelectedItem());
+            tourOverviewViewModel.updateTour((TourItem) tourItemList.getSelectionModel().getSelectedItem());
         } catch (IOException e) {
             logger.fatal("FXML error:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_FXML"));

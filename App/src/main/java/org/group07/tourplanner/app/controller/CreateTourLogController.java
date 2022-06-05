@@ -34,7 +34,7 @@ public class CreateTourLogController {
     
     private final ResourceManager rm;
 
-    private static final Logger logger = LogManager.getLogger(CreateTourLogController.class);
+    private static final Logger logger = LogManager.getLogger(DAL.class);
 
     @FXML
     void initialize() {

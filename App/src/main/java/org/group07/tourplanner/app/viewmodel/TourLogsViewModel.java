@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import lombok.Getter;
 
 import org.group07.tourplanner.dal.DAL;
+import org.group07.tourplanner.dal.TourLogDao;
 import org.group07.tourplanner.dal.model.TourItem;
 import org.group07.tourplanner.dal.model.TourLog;
 
@@ -23,11 +24,15 @@ public class TourLogsViewModel {
     private final CreateTourLogViewModel createTourLogViewModel;
     private final EditTourLogViewModel editTourLogViewModel;
 
+    private final TourLogDao tourLogDao;
+
     private TourItem tourItem;
 
-    public TourLogsViewModel(CreateTourLogViewModel createTourLogViewModel, EditTourLogViewModel editTourLogViewModel){
+    public TourLogsViewModel(CreateTourLogViewModel createTourLogViewModel, EditTourLogViewModel editTourLogViewModel, TourLogDao tourLogDao){
         this.createTourLogViewModel = createTourLogViewModel;
         this.editTourLogViewModel = editTourLogViewModel;
+
+        this.tourLogDao = tourLogDao;
     }
 
     public interface SelectionChangedListener {
@@ -52,7 +57,7 @@ public class TourLogsViewModel {
 
         this.tourItem = tourItem;
 
-        setLogs(DAL.getInstance().getTourLogDao().getAllById(tourItem.getId()));
+        setLogs(tourLogDao.getAllById(tourItem.getId()));
     }
 
     private void setLogs(List<TourLog> tourLogList){
@@ -71,11 +76,11 @@ public class TourLogsViewModel {
         if(tourLog == null)
             return;
 
-        DAL.getInstance().getTourLogDao().delete(tourLog);
+        tourLogDao.delete(tourLog);
         tourLogsList.remove(tourLog);
     }
 
-    public void editTourLog(TourLog tourLog) throws IOException {
+    public void updateTourLog(TourLog tourLog) throws IOException {
         if(tourLog == null)
             return;
 

@@ -1,6 +1,8 @@
 package org.group07.tourplanner.app.controller;
 
 import org.group07.tourplanner.app.viewmodel.*;
+import org.group07.tourplanner.bl.PdfGenerator;
+import org.group07.tourplanner.dal.DAL;
 
 public class ControllerFactory {
 
@@ -22,14 +24,14 @@ public class ControllerFactory {
     }
 
     private ControllerFactory() {
-        createTourItemViewModel = new CreateTourItemViewModel();
+        createTourItemViewModel = new CreateTourItemViewModel(DAL.getInstance().getTourItemDao());
         createTourLogViewModel = new CreateTourLogViewModel();
         editTourItemViewModel = new EditTourItemViewModel();
         editTourLogViewModel = new EditTourLogViewModel();
         searchBarViewModel = new SearchBarViewModel();
-        tourDetailsViewModel = new TourDetailsViewModel();
-        tourLogsViewModel = new TourLogsViewModel(createTourLogViewModel, editTourLogViewModel);
-        tourOverviewViewModel = new TourOverviewViewModel(createTourItemViewModel, editTourItemViewModel);
+        tourDetailsViewModel = new TourDetailsViewModel(DAL.getInstance().getTourLogDao());
+        tourLogsViewModel = new TourLogsViewModel(createTourLogViewModel, editTourLogViewModel, DAL.getInstance().getTourLogDao());
+        tourOverviewViewModel = new TourOverviewViewModel(createTourItemViewModel, editTourItemViewModel, DAL.getInstance().getTourItemDao());
         topBarViewModel = new TopBarViewModel(tourOverviewViewModel);
         mainWindowViewModel = new MainWindowViewModel(topBarViewModel, searchBarViewModel, tourDetailsViewModel, tourOverviewViewModel, tourLogsViewModel);
     }
