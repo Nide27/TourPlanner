@@ -1,4 +1,4 @@
-package org.group07.tourplanner.bl.logger;
+package org.group07.tourplanner.dal.logger;
 
 public interface ILoggerWrapper {
     void debug(String message);

@@ -1,4 +1,4 @@
-package org.group07.tourplanner.bl.logger;
+package org.group07.tourplanner.dal.logger;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

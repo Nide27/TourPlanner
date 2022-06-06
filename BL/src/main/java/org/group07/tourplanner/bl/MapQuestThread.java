@@ -24,6 +24,7 @@ import org.group07.tourplanner.dal.ConfigManager;
 import org.group07.tourplanner.dal.Jackson;
 import org.group07.tourplanner.dal.config.MapQuestConfig;
 import org.group07.tourplanner.dal.model.TourItem;
+import org.group07.tourplanner.dal.logger.LogManager;
 
 public class MapQuestThread extends Thread {
 
@@ -121,6 +122,7 @@ public class MapQuestThread extends Thread {
             imgProperty.set(img);
 
         } catch (IOException | InterruptedException e) {
+            LogManager.getLogger().debug("Unable to call API:\n" + e);
             e.printStackTrace();
         }
     }

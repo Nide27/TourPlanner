@@ -1,12 +1,11 @@
 package org.group07.tourplanner.app.viewmodel;
 
 import javafx.scene.control.Alert;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.group07.tourplanner.app.helper.AlertHelper;
 import org.group07.tourplanner.bl.ResourceManager;
 import org.group07.tourplanner.dal.model.TourItem;
 import org.group07.tourplanner.bl.BL;
+import org.group07.tourplanner.dal.logger.LogManager;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,8 +20,6 @@ public class MainWindowViewModel {
     private TourLogsViewModel tourLogsViewModel;
 
     private final ResourceManager rm;
-
-    private static final Logger logger = LogManager.getLogger(MainWindowViewModel.class);
 
     public MainWindowViewModel(TopBarViewModel topBarViewModel, SearchBarViewModel searchBarViewModel, TourDetailsViewModel tourDetailsViewModel, TourOverviewViewModel tourOverviewViewModel, TourLogsViewModel tourLogsViewModel) {
         this.topBarViewModel = topBarViewModel;
@@ -43,12 +40,12 @@ public class MainWindowViewModel {
             tourDetailsViewModel.setTourItem(selectedTourItem);
             topBarViewModel.setTourItem(selectedTourItem);
         } catch (FileNotFoundException e) {
-            logger.warn("Could not retrieve loading image:\n" + e);
+            LogManager.getLogger().warn("Could not retrieve loading image:\n" + e);
         } catch (IOException e) {
-            logger.warn("Could not retrieve config:\n" + e);
+            LogManager.getLogger().warn("Could not retrieve config:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_MQ"));
         }  catch (SQLException e) {
-            logger.error("DB error:\n" + e);
+            LogManager.getLogger().error("DB error:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_DB"));
         }
     }
@@ -58,7 +55,7 @@ public class MainWindowViewModel {
             var tours = BL.getInstance().findMatchingTours( searchString );
             tourOverviewViewModel.setTours(tours);
         } catch (SQLException e) {
-            logger.error("DB error:\n" + e);
+            LogManager.getLogger().error("DB error:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_DB"));
         }
     }

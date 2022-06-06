@@ -12,11 +12,9 @@ import javafx.collections.ObservableList;
 
 import lombok.Getter;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.TourItemDao;
 import org.group07.tourplanner.dal.model.TourItem;
+import org.group07.tourplanner.dal.logger.LogManager;
 
 public class TourOverviewViewModel {
 
@@ -26,7 +24,6 @@ public class TourOverviewViewModel {
 
     private List<SelectionChangedListener> listeners = new ArrayList<>();
 
-    private static final Logger logger = LogManager.getLogger(DAL.class);
 
     @Getter
     private ObservableList<TourItem> observableTourItems = FXCollections.observableArrayList();
@@ -41,7 +38,7 @@ public class TourOverviewViewModel {
         try {
             setTours(tourItemDao.getAll());
         } catch (SQLException e) {
-            logger.warn("Could not retrieve TourItems:\n" + e);
+            LogManager.getLogger().warn("Could not retrieve TourItems:\n" + e);
         }
         this.createTourItemViewModel = createTourItemViewModel;
         this.editTourItemViewModel = editTourItemViewModel;

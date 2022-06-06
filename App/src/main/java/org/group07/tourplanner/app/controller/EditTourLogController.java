@@ -6,12 +6,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.group07.tourplanner.app.helper.AlertHelper;
 import org.group07.tourplanner.bl.ResourceManager;
 import org.group07.tourplanner.app.viewmodel.EditTourLogViewModel;
-import org.group07.tourplanner.dal.DAL;
+import org.group07.tourplanner.dal.logger.LogManager;
 
 import java.sql.SQLException;
 
@@ -34,7 +32,7 @@ public class EditTourLogController {
 
     private final ResourceManager rm;
 
-    private static final Logger logger = LogManager.getLogger(DAL.class);
+    //private static final Logger logger = LogManager.getLogger(DAL.class);
 
     @FXML
     void initialize() {
@@ -81,7 +79,7 @@ public class EditTourLogController {
         try {
             this.editTourLogViewModel.editTourLog();
         } catch (SQLException e) {
-            logger.error("DB error:\n" + e);
+            LogManager.getLogger().error("DB error:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_DB"));
         }
     }

@@ -10,20 +10,17 @@ import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 import org.group07.tourplanner.app.helper.AlertHelper;
-import org.group07.tourplanner.bl.PdfGenerator;
 import org.group07.tourplanner.bl.ResourceManager;
 import org.group07.tourplanner.app.viewmodel.TopBarViewModel;
+import org.group07.tourplanner.dal.logger.LogManager;
 
 public class TopBarController {
 
     private final TopBarViewModel topBarViewModel;
 
     private final ResourceManager rm;
-
-    private static final Logger logger = LogManager.getLogger(TopBarController.class);
 
     public TopBarController(TopBarViewModel topBarViewModel){
         this.topBarViewModel = topBarViewModel;
@@ -43,16 +40,16 @@ public class TopBarController {
         try {
             topBarViewModel.createTourReport();
         } catch (FileNotFoundException e) {
-            logger.error("Could not open file when generating PDF:\n" + e);
+            LogManager.getLogger().error("Could not open file when generating PDF:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_FNF_MSG"));
         } catch (IOException e) {
-            logger.error("Could not create PDF:\n" + e);
+            LogManager.getLogger().error("Could not create PDF:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_IO_O_MSG"));
         } catch (DocumentException e) {
-            logger.error("Could not close OutputStream:\n" + e);
+            LogManager.getLogger().error("Could not close OutputStream:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_IO_O_MSG"));
         } catch (SQLException e) {
-            logger.error("DB error:\n" + e);
+            LogManager.getLogger().error("DB error:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_DB"));
         }
     }
@@ -61,16 +58,16 @@ public class TopBarController {
         try {
             topBarViewModel.createSummarizedReport();
         } catch (FileNotFoundException e) {
-            logger.error("Could not open file when generating PDF:\n" + e);
+            LogManager.getLogger().error("Could not open file when generating PDF:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_FNF_MSG"));
         } catch (IOException e) {
-            logger.error("Could not create PDF:\n" + e);
+            LogManager.getLogger().error("Could not create PDF:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_IO_O_MSG"));
         } catch (DocumentException e) {
-            logger.error("Could not close OutputStream:\n" + e);
+            LogManager.getLogger().error("Could not close OutputStream:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_IO_O_MSG"));
         } catch (SQLException e) {
-            logger.error("DB error:\n" + e);
+            LogManager.getLogger().error("DB error:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_DB"));
         }
     }
@@ -79,16 +76,16 @@ public class TopBarController {
         try {
             topBarViewModel.importFile();
         } catch (JsonProcessingException | NullPointerException e) {
-            logger.error("Could not parse JSON:\n" + e);
+            LogManager.getLogger().error("Could not parse JSON:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_JSON_MSG"));
         } catch (FileNotFoundException e) {
-            logger.error("Could not find specified file:\n" + e);
+            LogManager.getLogger().error("Could not find specified file:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_FNF_MSG"));
         } catch (IOException e) {
-            logger.error("Could not read from file:\n" + e);
+            LogManager.getLogger().error("Could not read from file:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_IO_I_MSG"));
         } catch (SQLException e) {
-            logger.error("DB error:\n" + e);
+            LogManager.getLogger().error("DB error:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_DB"));
         }
     }
@@ -97,13 +94,13 @@ public class TopBarController {
         try {
             topBarViewModel.exportFile();
         } catch (JsonProcessingException e) {
-            logger.error("Could not parse JSON:\n" + e);
+            LogManager.getLogger().error("Could not parse JSON:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_JSON_MSG"));
         } catch (IOException e) {
-            logger.error("Could not create/write to file:\n" + e);
+            LogManager.getLogger().error("Could not create/write to file:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_IO_O_MSG"));
         } catch (SQLException e) {
-            logger.error("DB error:\n" + e);
+            LogManager.getLogger().error("DB error:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_DB"));
         }
     }

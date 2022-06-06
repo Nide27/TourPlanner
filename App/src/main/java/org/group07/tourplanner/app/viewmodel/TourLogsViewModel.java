@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 
 import lombok.Getter;
 
-import org.group07.tourplanner.dal.DAL;
 import org.group07.tourplanner.dal.TourLogDao;
 import org.group07.tourplanner.dal.model.TourItem;
 import org.group07.tourplanner.dal.model.TourLog;

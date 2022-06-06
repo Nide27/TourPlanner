@@ -6,12 +6,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.group07.tourplanner.app.helper.AlertHelper;
 import org.group07.tourplanner.bl.ResourceManager;
 import org.group07.tourplanner.app.viewmodel.EditTourItemViewModel;
-import org.group07.tourplanner.dal.DAL;
+import org.group07.tourplanner.dal.logger.LogManager;
 
 import java.sql.SQLException;
 
@@ -31,8 +29,6 @@ public class EditTourItemController {
     private final EditTourItemViewModel editTourItemViewModel;
 
     private final ResourceManager rm;
-
-    private static final Logger logger = LogManager.getLogger(DAL.class);
 
     public EditTourItemController(EditTourItemViewModel editTourItemViewModel){
         this.editTourItemViewModel = editTourItemViewModel;
@@ -75,7 +71,7 @@ public class EditTourItemController {
         try {
             this.editTourItemViewModel.editTour();
         } catch (SQLException e) {
-            logger.error("DB error:\n" + e);
+            LogManager.getLogger().error("DB error:\n" + e);
             AlertHelper.showAlert(Alert.AlertType.ERROR, rm.load("ALERT_ERROR_TITLE"), rm.load("ALERT_ERROR_DB"));
         }
     }

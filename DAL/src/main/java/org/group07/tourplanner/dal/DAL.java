@@ -7,8 +7,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.group07.tourplanner.dal.logger.LogManager;
 
 public class DAL {
 
@@ -21,8 +20,6 @@ public class DAL {
     }
 
     private final String dbConfigPath = "./DAL/src/main/resources/org/group07/tourplanner/dal/dbconfig.json";
-
-    private static final Logger logger = LogManager.getLogger(DAL.class);
 
     private Connection conn;
 
@@ -40,10 +37,8 @@ public class DAL {
 
             tourItemDao = new TourItemDao(conn);
             tourLogDao = new TourLogDao(conn);
-        } catch (SQLException e) {
-            logger.fatal("Error connecting do DB\n" + e);
-        } catch (IOException e) {
-            logger.fatal("Error connecting do DB\n" + e);
+        } catch (SQLException | IOException e) {
+            LogManager.getLogger().fatal("Error connecting do DB\n" + e);
         }
     }
 }

@@ -11,8 +11,6 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.group07.tourplanner.bl.ResourceManager;
 import org.group07.tourplanner.bl.PdfGenerator;
 import org.group07.tourplanner.dal.DAL;
@@ -23,6 +21,7 @@ import org.group07.tourplanner.dal.model.TourItem;
 import org.group07.tourplanner.dal.model.TourLog;
 import org.group07.tourplanner.dal.model.TourReport;
 import org.group07.tourplanner.dal.model.TourSummary;
+import org.group07.tourplanner.dal.logger.LogManager;
 
 public class TopBarViewModel {
 
@@ -31,8 +30,6 @@ public class TopBarViewModel {
     private final TourOverviewViewModel tourOverviewViewModel;
 
     private final ResourceManager rm;
-
-    private static final Logger logger = LogManager.getLogger(DAL.class);
 
     public TopBarViewModel(TourOverviewViewModel tourOverviewViewModel){
         this.tourOverviewViewModel = tourOverviewViewModel;
@@ -58,7 +55,7 @@ public class TopBarViewModel {
             try {
                 tourLogList = DAL.getInstance().getTourLogDao().getAllById(tourItem.getId());
             } catch (SQLException e) {
-                logger.warn("Could not retrieve Tours for Summary PDF:" + e);
+                LogManager.getLogger().warn("Could not retrieve Tours for Summary PDF:" + e);
             }
 
             ListIterator<TourLog> it = tourLogList.listIterator();
@@ -151,7 +148,8 @@ public class TopBarViewModel {
             try {
                 tourLogDao.create(tourLog);
             } catch (SQLException e) {
-                logger.warn("Could not import TourLogs:\n" + e);
+                LogManager.getLogger().warn("Could not import TourLogs:\n" + e);
+
             }
         });
 
