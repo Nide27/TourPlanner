@@ -49,7 +49,7 @@ public class TourItemDao implements Dao<TourItem> {
     @Override
     public List<TourItem> getAll() throws SQLException {
 
-        String sql = "SELECT * FROM items;";
+        String sql = "SELECT * FROM items ORDER BY id ASC;";
 
         PreparedStatement stmt = conn.prepareStatement(sql);
 

@@ -149,7 +149,6 @@ public class TopBarViewModel {
                 tourLogDao.create(tourLog);
             } catch (SQLException e) {
                 LogManager.getLogger().warn("Could not import TourLogs:\n" + e);
-
             }
         });
 
